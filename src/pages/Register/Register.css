@@ -1,17 +1,16 @@
-
-#login-title{
-    font-size: 5em;
-}
-
-.login-container {
+.register-container {
   min-height: 100vh;
   padding: 20px;
 }
 
-.login-card {
+.register-card{
   width: 100%;
   max-width: 500px; 
   min-height: 350px;
   background-color:#EBFFEC;
   border-radius: 20px;
+}
+
+#register-title{
+    font-size: 5em;
 }
