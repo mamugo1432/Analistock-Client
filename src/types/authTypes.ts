@@ -6,7 +6,8 @@ export interface LoginCredentials {
 export interface User {
     username : string,
     email : string,
-    role:string
+    role:string,
+    sex:string
 }
 
 export interface AuthContextType {
@@ -43,6 +44,7 @@ export interface JWTPayload {
   sub: string,
   role: string,
   email: string,
+  sex:string,
   iat: number,
   exp: number
 

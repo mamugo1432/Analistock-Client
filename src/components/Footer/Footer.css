@@ -1,0 +1,23 @@
+.analistock-footer {
+  width: 100%;
+  padding: 6px 16px;
+  box-sizing: border-box;
+}
+
+.footer-inner {
+  background-color: #EBFFEC;
+  border-radius: 999px;
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 16px rgba(80, 180, 80, 0.10);
+}
+
+.footer-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #000000;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}

@@ -10,6 +10,7 @@ export default function Login(){
   console.log(user);
   const onSubmit = async (info : LoginCredentials) => {
    login(info);
+   reset();
   }
 
     return (
@@ -44,7 +45,7 @@ export default function Login(){
       className={`form-control ${errors.password ? "is-invalid" : ""}`}
           {...register("password", {
             required: "El password es obligatorio",
-            minLength: { value: 3, message: "Mínimo 3 caracteres" }
+            minLength: { value: 5, message: "Mínimo 5 caracteres" }
           })}
       />
 

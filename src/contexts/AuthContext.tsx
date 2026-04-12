@@ -27,7 +27,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 setUser({
                     username: payload.sub,
                     email: payload.email,
-                    role: payload.role
+                    role: payload.role,
+                    sex:payload.sex
                 });
 
 
@@ -47,16 +48,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         initializeAuth();
     }, []);
 
-    const login = async (credentials: LoginCredentials) => {
+ const login = async (credentials: LoginCredentials) => {
         try {
             const token = await loginUser(credentials);
-            
+            console.log(token);
+            console.log(token.token);
             localStorage.setItem("token", token.token);
            const payload = jwtDecode<JWTPayload>(token.token);
                 setUser({
                     username: payload.sub,
                     email: payload.email,
-                    role: payload.role
+                    role: payload.role,
+                    sex:payload.sex
                 });
 
             setToken(token.token);
