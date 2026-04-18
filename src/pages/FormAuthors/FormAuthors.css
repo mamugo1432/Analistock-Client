@@ -1,0 +1,12 @@
+.form-container {
+  min-height: 70vh;
+  margin: 0 15px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 500px; 
+  min-height: 350px;
+  background-color:#EBFFEC;
+  border-radius: 20px;
+}

@@ -7,8 +7,6 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
-  console.log(user);
-  console.log(isAuthenticated);
 
   return (
     <header className="analistock-header">
