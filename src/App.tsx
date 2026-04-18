@@ -7,6 +7,7 @@ import Authors from "./pages/Authors/Authors";
 import Layout from "./pages/Layout";
 import FormAuthors from "./pages/FormAuthors/FormAuthors"
 import { AuthorsProvider } from "./contexts/AuthorsContext";
+import { RequireAuthAdmin } from "./guards/RequireAuthAdmin";
 
 function App() {
   return (<BrowserRouter>
@@ -15,10 +16,37 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/" element={<Layout/>}>
-      <Route path="/authors" element={<AuthorsProvider><Authors/></AuthorsProvider>}/>
-      <Route path="/authors/edit/:id" element={<AuthorsProvider><FormAuthors mode={"edit"}/></AuthorsProvider>}/>
-      <Route path="/authors/delete/:id" element={<AuthorsProvider><FormAuthors mode={"delete"}/></AuthorsProvider>}/>
-      <Route path="/authors/create" element={<AuthorsProvider><FormAuthors mode={"create"}/></AuthorsProvider>}/>
+
+    {/**  ------ Rutas de Authors ------*/}
+
+      <Route path="/authors" element={
+        <RequireAuthAdmin>
+          <AuthorsProvider>
+            <Authors/>
+          </AuthorsProvider>
+        </RequireAuthAdmin>}/>
+
+      <Route path="/authors/edit/:id" element={
+        <RequireAuthAdmin>
+          <AuthorsProvider>
+            <FormAuthors mode={"edit"}/>
+          </AuthorsProvider>
+        </RequireAuthAdmin>}/>
+      
+      <Route path="/authors/delete/:id" element={
+        <RequireAuthAdmin>
+          <AuthorsProvider>
+            <FormAuthors mode={"delete"}/>
+          </AuthorsProvider>
+        </RequireAuthAdmin>}/>
+
+      <Route path="/authors/create" element={
+        <RequireAuthAdmin>
+          <AuthorsProvider>
+            <FormAuthors mode={"create"}/>
+          </AuthorsProvider>
+        </RequireAuthAdmin>}/>
+        
       </Route>
     </Routes>
     </AuthProvider>
