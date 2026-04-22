@@ -9,7 +9,7 @@ import { useAuthor } from "../../contexts/AuthorsContext";
 
 export default function FormAuthors({mode}:{mode:string}){
 
-    const {register,handleSubmit, setError, reset, formState : {errors, isSubmitting }} = useForm<upsertAuthorsBody>();
+    const {register,handleSubmit, setError, reset, formState : {errors, isSubmitting }} = useForm<upsertAuthorsBody>({mode:"onTouched"});
     const {postAuthor, delAuthor, putAuthor} = useAuthor();
     const [loading, setLoading] = useState<boolean>(mode!="create");
     const {id} = useParams();
@@ -115,7 +115,7 @@ export default function FormAuthors({mode}:{mode:string}){
 
       <div className="text-end">
         <button disabled={isSubmitting} className={mode == "create" ? "btn btn-primary" : mode=="edit" ? "btn btn-warning" : "btn btn-danger"}>
-          {isSubmitting ? "Cargando..." : (mode == "create" ? "Create" : mode=="edit" ? "Edit" : "Delete")}
+          {isSubmitting ? "Cargando..." : (mode == "create" ? "Crear" : mode=="edit" ? "Editar" : "Eliminar")}
         </button>
       </div>
     </form>

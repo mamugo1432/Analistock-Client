@@ -1,6 +1,6 @@
 import { createContext, useContext, type ReactNode } from "react";
 import type { AuthorsContextType, upsertAuthorsBody, Author } from "../types/authorsType";
-import { createAuthor, deleteAuthor, getAuthorByIdService, updateAuthor } from "../services/authors-service";
+import { createAuthor, deleteAuthor, updateAuthor } from "../services/authors-service";
 
 const AuthorsContext = createContext<AuthorsContextType|undefined>(undefined);
 

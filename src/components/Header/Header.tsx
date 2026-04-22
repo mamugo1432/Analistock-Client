@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -22,16 +22,16 @@ export default function Header() {
             {isAuthenticated && user?.role === "ADMIN" &&
               <>
                 <div className="nav-row">
-                  <a href="#" className="header-pill">Test Inversor</a>
-                  <a href="#" className="header-pill">Consejos</a>
-                  <a href="#" className="header-pill">Acciones</a>
-                  <a href="#" className="header-pill">Autores</a>
+                  <button  className="header-pill">Test Inversor</button>
+                  <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
+                  <button  className="header-pill" onClick={() =>navigate("/stocks")}>Acciones</button>
+                  <button  className="header-pill" onClick={() =>navigate("/authors")}>Autores</button>
                 </div>
                 <div className="nav-row">
-                  <a href="#" className="header-pill">Usuarios</a>
-                  <a href="#" className="header-pill">Acciones Favoritas</a>
-                  <a href="#" className="header-pill">Autores Favoritos</a>
-                  <a href="#" className="header-pill">Logout</a>
+                  <button  className="header-pill">Usuarios</button>
+                  <button  className="header-pill">Acciones Favoritas</button>
+                  <button  className="header-pill">Autores Favoritos</button>
+                  <button  className="header-pill" onClick={() =>logout()}>Logout</button>
                 </div>
               </>
             }
@@ -39,14 +39,14 @@ export default function Header() {
             {isAuthenticated && user?.role === "USER" &&
               <>
                 <div className="nav-row">
-                  <a href="#" className="header-pill">Test Inversor</a>
-                  <a href="#" className="header-pill">Consejos</a>
-                  <a href="#" className="header-pill">Acciones</a>
+                  <button  className="header-pill">Test Inversor</button>
+                  <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
+                  <button  className="header-pill">Acciones</button>
                 </div>
                 <div className="nav-row">
-                  <a href="#" className="header-pill">Acciones Favoritas</a>
-                  <a href="#" className="header-pill">Autores Favoritos</a>
-                  <a href="#" className="header-pill">Logout</a>
+                  <button  className="header-pill">Acciones Favoritas</button>
+                  <button  className="header-pill">Autores Favoritos</button>
+                  <button className="header-pill" onClick={() =>logout()}>Logout</button>
                 </div>
               </>
             }
@@ -54,9 +54,9 @@ export default function Header() {
             {!isAuthenticated &&
               <>
                 <div className="nav-row">
-                  <a href="#" className="header-pill">Acciones</a>
-                  <a href="#" className="header-pill">Login</a>
-                  <a href="#" className="header-pill">Registro</a>
+                  <button  className="header-pill">Acciones</button>
+                  <button  className="header-pill" onClick={() => navigate("/login")}>Login</button>
+                  <button  className="header-pill">Registro</button>
                 </div>
               </>
             }
@@ -88,33 +88,33 @@ export default function Header() {
 
           {!isAuthenticated &&
             <>
-              <a href="#" className="header-pill">Acciones</a>
-              <a href="#" className="header-pill">Login</a>
-              <a href="#" className="header-pill">Registro</a>
+              <button  className="header-pill">Acciones</button>
+              <button  className="header-pill" onClick={() => navigate("/login")}>Login</button>
+              <button  className="header-pill">Registro</button>
             </>
           }
 
           {isAuthenticated && user?.role == "ADMIN" &&
             <>
-              <a href="#" className="header-pill">Test Inversor</a>
-              <a href="#" className="header-pill">Consejos</a>
-              <a href="#" className="header-pill">Acciones</a>
-              <a href="#" className="header-pill">Autores</a>
-              <a href="#" className="header-pill">Usuarios</a>
-              <a href="#" className="header-pill">Acciones Favoritas</a>
-              <a href="#" className="header-pill">Autores Favoritos</a>
-              <a href="#" className="header-pill">Logout</a>
+              <button  className="header-pill">Test Inversor</button>
+              <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
+              <button  className="header-pill">Acciones</button>
+              <button  className="header-pill" onClick={() =>navigate("/authors")}>Autores</button>
+              <button  className="header-pill">Usuarios</button>
+              <button  className="header-pill">Acciones Favoritas</button>
+              <button  className="header-pill">Autores Favoritos</button>
+              <button  className="header-pill" onClick={() =>logout()}>Logout</button>
             </>
           }
 
           {isAuthenticated && user?.role == "USER" &&
             <>
-              <a href="#" className="header-pill">Test Inversor</a>
-              <a href="#" className="header-pill">Consejos</a>
-              <a href="#" className="header-pill">Acciones</a>
-              <a href="#" className="header-pill">Autores Favoritos</a>
-              <a href="#" className="header-pill">Acciones Favoritas</a>
-              <a href="#" className="header-pill">Logout</a>
+              <button  className="header-pill">Test Inversor</button>
+              <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
+              <button  className="header-pill">Acciones</button>
+              <button  className="header-pill">Autores Favoritos</button>
+              <button  className="header-pill">Acciones Favoritas</button>
+              <button  className="header-pill" onClick={() =>logout()}>Logout</button>
             </>
           }
 

@@ -125,6 +125,17 @@
   gap: 8px;
   padding: 10px 16px;
 }
+
+@media (max-width: 730px) {
+
+  .header-user-desktop {
+    display: none;
+  }
+
+  .header-user-mobile {
+    display: inline;
+  }
+}
 @media (max-width: 576px) {
   .header-user-btn::before {
     font-size: 1.2rem;
@@ -140,14 +151,6 @@
 
   .header-nav {
     display: none;
-  }
-
-  .header-user-desktop {
-    display: none;
-  }
-
-  .header-user-mobile {
-    display: inline;
   }
 
   .header-menu-toggle {

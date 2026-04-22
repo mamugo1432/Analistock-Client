@@ -2,6 +2,7 @@ import {jwtDecode} from "jwt-decode";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { AuthContextType, JWTPayload, LoginCredentials, User } from "../types/authTypes";
 import { loginUser, verifyToken } from "../services/auth-service";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -9,6 +10,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const [isInitialized, setIsInitialized] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const initializeAuth = async () => {
@@ -51,8 +53,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
  const login = async (credentials: LoginCredentials) => {
         try {
             const token = await loginUser(credentials);
-            console.log(token);
-            console.log(token.token);
             localStorage.setItem("token", token.token);
            const payload = jwtDecode<JWTPayload>(token.token);
                 setUser({
@@ -72,6 +72,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(null);
         setToken(null);
         localStorage.removeItem("token");
+        navigate("/");
     };
     return (
         <AuthContext.Provider value={{

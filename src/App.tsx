@@ -8,6 +8,11 @@ import Layout from "./pages/Layout";
 import FormAuthors from "./pages/FormAuthors/FormAuthors"
 import { AuthorsProvider } from "./contexts/AuthorsContext";
 import { RequireAuthAdmin } from "./guards/RequireAuthAdmin";
+import { RequireAuth } from "./guards/RequireAuth";
+import AdviceCard from "./components/AdviceCard/AdviceCard";
+import { AdvicesProvider } from "./contexts/AdvicesContext";
+import Advices from './pages/Advices/Advices';
+import FormAdvices from "./pages/FormAdvices/FormAdvices"
 
 function App() {
   return (<BrowserRouter>
@@ -45,6 +50,37 @@ function App() {
           <AuthorsProvider>
             <FormAuthors mode={"create"}/>
           </AuthorsProvider>
+        </RequireAuthAdmin>}/>
+
+
+            {/**  ------ Rutas de Advices ------*/}
+
+      <Route path="/advices" element={
+        <RequireAuth>
+          <AdvicesProvider>
+            <Advices/>
+          </AdvicesProvider>
+        </RequireAuth>}/>
+
+        <Route path="/advices/create" element={
+          <RequireAuthAdmin>
+            <AdvicesProvider>
+                <FormAdvices mode="create"/>
+            </AdvicesProvider>
+        </RequireAuthAdmin>}/>
+
+        <Route path="/advices/edit/:id" element={
+          <RequireAuthAdmin>
+            <AdvicesProvider>
+              <FormAdvices mode="edit"/>
+            </AdvicesProvider>
+        </RequireAuthAdmin>}/>
+
+        <Route path="/advices/delete/:id" element={
+          <RequireAuthAdmin>
+            <AdvicesProvider>
+              <FormAdvices mode="delete"/>
+            </AdvicesProvider>
         </RequireAuthAdmin>}/>
         
       </Route>
