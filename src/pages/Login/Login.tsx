@@ -3,14 +3,28 @@ import "./Login.css";
 import type { LoginCredentials } from "../../types/authTypes";
 import { loginUser } from "../../services/auth-service";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 export default function Login(){
 
-  const {register,handleSubmit, setError, reset, formState : {errors, isSubmitting }} = useForm<LoginCredentials>();
-  const {login, user} = useAuth();
-  console.log(user);
+  const {register,handleSubmit, reset, formState : {errors, isSubmitting }} = useForm<LoginCredentials>();
+  const {login} = useAuth();
+  const navigate = useNavigate();
+  const url = new URLSearchParams(window.location.search);
+  const notAuthenticatedError = url.toString().includes("error");
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
+
   const onSubmit = async (info : LoginCredentials) => {
-   login(info);
-   reset();
+    try{
+    await login(info);
+    setInvalidCredentials(false);
+    reset();
+    navigate("/stocks");
+    }catch(error){
+      setInvalidCredentials(true);
+      reset();
+    }
+
   }
 
     return (
@@ -19,6 +33,8 @@ export default function Login(){
   <div className="login-card p-4">
     <h2 id="login-title" className="text-center mb-4 homenaje-regular">LOGIN</h2>
 
+    { notAuthenticatedError && <div className=" d-flex alert alert-danger justify-content-center align-items-center">Debes loguearte para continuar</div>}
+    { invalidCredentials && <div className=" d-flex alert alert-danger justify-content-center align-items-center">Credenciales Inválidas</div>}
     <form action="" onSubmit={handleSubmit(onSubmit)}>
 
        {errors.username && errors.username.message=="Credenciales Incorrectas" && (
@@ -52,8 +68,11 @@ export default function Login(){
        {errors.password && errors.password.message!="Credenciales Incorrectas" && (
           <div className="invalid-feedback">{errors.password.message}</div>
         )}
-
+      
+      <small>No tengo una cuenta, <a href="/register">Registrarse</a></small>
+      
     </div>
+    
 
     <div className="text-end">
       <button type="submit" className="btn btn-success" disabled={isSubmitting}>

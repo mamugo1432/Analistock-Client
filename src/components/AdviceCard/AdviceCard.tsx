@@ -10,8 +10,7 @@ export default function AdviceCard ({advice}:{advice:Advice}) {
   const navigate = useNavigate();
   const {isAuthenticated, user} = useAuth();
   return (
-    <>
-
+    <div className="col-12 col-md-6 col-lg-4">
     <div className="consejo-card card shadow-sm">
       <div className="card-body">
 
@@ -39,7 +38,7 @@ export default function AdviceCard ({advice}:{advice:Advice}) {
         </div>
       </div>
     </div>
-    </>
+    </div>
   );
 };
 

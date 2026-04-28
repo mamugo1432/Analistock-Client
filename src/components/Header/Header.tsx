@@ -41,7 +41,7 @@ export default function Header() {
                 <div className="nav-row">
                   <button  className="header-pill">Test Inversor</button>
                   <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
-                  <button  className="header-pill">Acciones</button>
+                  <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
                 </div>
                 <div className="nav-row">
                   <button  className="header-pill">Acciones Favoritas</button>
@@ -54,9 +54,9 @@ export default function Header() {
             {!isAuthenticated &&
               <>
                 <div className="nav-row">
-                  <button  className="header-pill">Acciones</button>
+                  <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
                   <button  className="header-pill" onClick={() => navigate("/login")}>Login</button>
-                  <button  className="header-pill">Registro</button>
+                  <button  className="header-pill" onClick={() => navigate("/register")}>Registro</button>
                 </div>
               </>
             }
@@ -88,9 +88,9 @@ export default function Header() {
 
           {!isAuthenticated &&
             <>
-              <button  className="header-pill">Acciones</button>
+              <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
               <button  className="header-pill" onClick={() => navigate("/login")}>Login</button>
-              <button  className="header-pill">Registro</button>
+              <button  className="header-pill" onClick={() => navigate("/register")}>Registro</button>
             </>
           }
 
@@ -98,7 +98,7 @@ export default function Header() {
             <>
               <button  className="header-pill">Test Inversor</button>
               <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
-              <button  className="header-pill">Acciones</button>
+              <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
               <button  className="header-pill" onClick={() =>navigate("/authors")}>Autores</button>
               <button  className="header-pill">Usuarios</button>
               <button  className="header-pill">Acciones Favoritas</button>
@@ -111,7 +111,7 @@ export default function Header() {
             <>
               <button  className="header-pill">Test Inversor</button>
               <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
-              <button  className="header-pill">Acciones</button>
+              <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
               <button  className="header-pill">Autores Favoritos</button>
               <button  className="header-pill">Acciones Favoritas</button>
               <button  className="header-pill" onClick={() =>logout()}>Logout</button>

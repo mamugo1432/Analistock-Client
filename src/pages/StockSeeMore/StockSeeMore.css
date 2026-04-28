@@ -1,0 +1,93 @@
+.stock-container {
+            background: #EBFFEC;;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 900px;
+            margin: 10px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .stock-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .stock-ticker {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 60px;
+            margin-top: 30px;
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+        }
+
+        .info-label {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .action-button {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            background: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .stock-card {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .stock-title {
+                font-size: 2rem;
+                margin-bottom: 60px;
+            }
+
+            .stock-ticker {
+                top: 30px;
+                right: 20px;
+                font-size: 0.9rem;
+            }
+
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .action-button {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stock-title {
+                font-size: 1.5rem;
+            }
+
+            .stock-ticker {
+                font-size: 0.85rem;
+            }
+        }

@@ -4,7 +4,7 @@ import "./CardAuthor.css";
 export default function CardAuthor({author}:CardAuthorProps){
   const navigate = useNavigate();
     return (
-         <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+         <div className="col-12 col-md-6 col-lg-4">
   <div className="custom-card p-3 d-flex flex-column justify-content-between h-100">
 
     <div>

@@ -1,0 +1,38 @@
+.company-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #EBFFEC;
+}
+
+.risk-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+}
+
+.risk-extreme{
+    background-color: #000000;
+}
+
+.risk-too-high {
+  background-color: #970010; 
+}
+
+.risk-high {
+  background-color: #d80319; 
+}
+
+.risk-medium {
+  background-color: #eeb200f3; 
+}
+
+.risk-low {
+  background-color: #0068ad; 
+}
+
+.risk-too-low {
+  background-color: #31b3ff; 
+}
+

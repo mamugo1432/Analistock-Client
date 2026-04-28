@@ -10,20 +10,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const [isInitialized, setIsInitialized] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const initializeAuth = async () => {
+            const initializeAuth = async () => {
             const storedToken = localStorage.getItem("token");
             
             if (!storedToken) {
+                setIsAuthenticated(false);
                 setIsInitialized(true);
                 return;
             }
 
             try {
                 await verifyToken();
-
+                setIsAuthenticated(true);
                 setToken(storedToken);
                 const payload = jwtDecode<JWTPayload>(storedToken);
                 setUser({
@@ -37,6 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             } catch (error) {
                 console.warn("Sesión caducada");
                 localStorage.removeItem("token");
+                setIsAuthenticated(false);
                 setUser(null);
                 setToken(null);
 
@@ -47,12 +49,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         }
 
+    useEffect(() => {
         initializeAuth();
     }, []);
 
  const login = async (credentials: LoginCredentials) => {
         try {
             const token = await loginUser(credentials);
+            setIsAuthenticated(true);
             localStorage.setItem("token", token.token);
            const payload = jwtDecode<JWTPayload>(token.token);
                 setUser({
@@ -64,22 +68,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
             setToken(token.token);
         } catch (error) {
-            console.error(error);
             throw error;
         }
     };
     const logout = () => {
         setUser(null);
         setToken(null);
+        setIsAuthenticated(false);
         localStorage.removeItem("token");
-        navigate("/");
+        navigate("/login");
     };
     return (
         <AuthContext.Provider value={{
             user, token,
-            isAuthenticated: !!user, 
+            isAuthenticated, 
             isInitialized,
-            login, logout
+            login, logout,
+            initializeAuth
         }}>
             {children} </AuthContext.Provider>
     );

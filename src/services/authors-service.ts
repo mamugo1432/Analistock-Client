@@ -1,5 +1,5 @@
 import type { Author, upsertAuthorsBody } from "../types/authorsType";
-import type { GetRequest } from "../types/authTypes";
+import type { GetRequest } from "../types/generalTypes";
 import { API_URL, fetchWithAuth } from "./auth-service";
 
 export async function getAllAuthors(pageNum:number, pageSize:number):Promise<GetRequest<Author>>{

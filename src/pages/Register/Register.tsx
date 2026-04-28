@@ -3,21 +3,32 @@ import type { RegisterData, RegisterInputs } from "../../types/authTypes";
 import "./Register.css";
 import { checkEmail, obtainValidUsername, registerUser } from "../../services/auth-service";
 import { useAuth } from "../../contexts/AuthContext";
+import { useState } from "react";
+import RegisterModal from "../../components/MaterialUI/RegisterModal";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
 
   const {register,handleSubmit, reset, watch, trigger, formState : {errors, isSubmitting }} = useForm<RegisterInputs>({mode:"onTouched"});
-
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const password = watch("password");
   const {login, user} = useAuth();
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   const onSubmit =  async (data : RegisterInputs) => {
+    try{
     const username = await obtainValidUsername(data.fullName);
+    if(username) setUsername(username)
     const registerData : RegisterData = {...data, username};
     await registerUser(registerData); 
     login({username, password : data.password});
-    console.log(user);
+    setOpenModal(true);
     reset();
+    navigate("/stocks");
+    }catch(error){
+      throw error;
+    }
   }
 
   return (
@@ -157,7 +168,7 @@ export default function Register() {
           </form>
         </div>
       </div>
-
+<RegisterModal open={openModal} setOpen={setOpenModal} username={username}/>
     </>
   );
 }

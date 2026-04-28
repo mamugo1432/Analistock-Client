@@ -1,6 +1,6 @@
 import type { Advice, upsertAdviceBody } from "../types/advicesType";
 import type { Author, upsertAuthorsBody } from "../types/authorsType";
-import type { GetRequest } from "../types/authTypes";
+import type { GetRequest } from "../types/generalTypes";
 import { API_URL, fetchWithAuth } from './auth-service';
 
 export async function getAllAdvices(pageNum:number, pageSize:number):Promise<GetRequest<Advice>>{
@@ -45,7 +45,7 @@ export async function createAdvice(infoAdvice:upsertAdviceBody): Promise<Advice>
         });
 
         if(response.status!==201){
-            throw new Error("Se ha producido un error al crear un nuevo author");
+            throw new Error("Se ha producido un error al crear un nuevo consejo");
         }
 
         return await response.json();

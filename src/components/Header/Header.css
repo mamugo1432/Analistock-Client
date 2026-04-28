@@ -108,14 +108,20 @@
 }
 
 .mobile-menu {
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none; /* Oculta en Firefox */
+/*  overflow: hidden;*/
   max-height: 0;
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
 }
+
+.mobile-menu::-webkit-scrollbar {
+  width: 0; /* Oculta en Chrome, Safari y Opera */
+}
 .mobile-menu.open {
-  max-height: 300px; 
+  max-height: 150px; 
   opacity: 1;
   transform: translateY(0);
 }

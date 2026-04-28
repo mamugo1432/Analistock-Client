@@ -17,6 +17,7 @@ export interface AuthContextType {
     isInitialized: boolean;
     login: (creds: LoginCredentials) => Promise<void>;
     logout: () => void;
+    initializeAuth: ()=> void
 }
 
 export interface RegisterInputs {
@@ -49,10 +50,8 @@ export interface JWTPayload {
   exp: number
 
 }
-
-export interface GetRequest<T>{
-    pageSize:number;
-    pageNum:number;
-    totalElements:number;
-    content : T[];
+export interface RegisterModalProps{
+    open:boolean,
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    username:string
 }

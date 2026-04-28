@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
@@ -8,11 +8,17 @@ import Layout from "./pages/Layout";
 import FormAuthors from "./pages/FormAuthors/FormAuthors"
 import { AuthorsProvider } from "./contexts/AuthorsContext";
 import { RequireAuthAdmin } from "./guards/RequireAuthAdmin";
-import { RequireAuth } from "./guards/RequireAuth";
+import { RequireAuth } from './guards/RequireAuth';
 import AdviceCard from "./components/AdviceCard/AdviceCard";
 import { AdvicesProvider } from "./contexts/AdvicesContext";
 import Advices from './pages/Advices/Advices';
 import FormAdvices from "./pages/FormAdvices/FormAdvices"
+import { StocksProvider } from "./contexts/StocksContent";
+import FormStocks from "./pages/FormStocks/FormStocks";
+import Stocks from "./pages/Stocks/Stocks";
+import StockCard from "./components/StockCard/StockCard";
+import StockSeeMore from "./pages/StockSeeMore/StockSeeMore";
+
 
 function App() {
   return (<BrowserRouter>
@@ -21,6 +27,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/" element={<Layout/>}>
+      <Route index element={<Navigate to="/stocks" replace/>} />
 
     {/**  ------ Rutas de Authors ------*/}
 
@@ -82,6 +89,42 @@ function App() {
               <FormAdvices mode="delete"/>
             </AdvicesProvider>
         </RequireAuthAdmin>}/>
+
+         {/**  ------ Rutas de Stocks ------*/}
+
+      <Route path="/stocks" element={
+          <StocksProvider>
+            <Stocks/>
+          </StocksProvider>
+      }/> 
+
+        <Route path="/stocks/create" element={
+          <RequireAuthAdmin>
+            <StocksProvider>
+                <FormStocks mode="create"/>
+            </StocksProvider>
+        </RequireAuthAdmin>}/>
+
+        <Route path="/stocks/edit/:id" element={
+          <RequireAuthAdmin>
+            <StocksProvider>
+              <FormStocks mode="edit"/>
+            </StocksProvider>
+        </RequireAuthAdmin>}/>
+
+        <Route path="/stocks/delete/:id" element={
+          <RequireAuthAdmin>
+            <StocksProvider>
+              <FormStocks mode="delete"/>
+            </StocksProvider>
+        </RequireAuthAdmin>}/>
+
+        <Route path="/stock/:id" element={
+          <RequireAuth>
+            <StocksProvider>
+              <StockSeeMore/>
+            </StocksProvider>
+        </RequireAuth>}/>
         
       </Route>
     </Routes>
