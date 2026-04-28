@@ -31,7 +31,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                     username: payload.sub,
                     email: payload.email,
                     role: payload.role,
-                    sex:payload.sex
+                    sex:payload.sex,
+                    idUser: payload.idUser
                 });
 
 
@@ -63,7 +64,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                     username: payload.sub,
                     email: payload.email,
                     role: payload.role,
-                    sex:payload.sex
+                    sex:payload.sex,
+                    idUser:payload.idUser
                 });
 
             setToken(token.token);

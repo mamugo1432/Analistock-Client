@@ -4,6 +4,9 @@ import { useStock } from "../../contexts/StocksContent";
 import { useNavigate, useParams } from "react-router-dom";
 import "./StockSeeMore.css"
 import { transformDate } from '../../services/advices-service';
+import { useAuth } from "../../contexts/AuthContext";
+import { useFavoriteStock } from "../../contexts/FavoriteStocksContent";
+import { isThisStockFavorite } from "../../services/stocks-favorites-service";
 export default function StockSeeMore(){
 
         const [stock, setStock] = useState<GetStockById>({
@@ -14,23 +17,63 @@ export default function StockSeeMore(){
     const [loading, setLoading] = useState<boolean>(false);
     const {getStockId} = useStock();
     const {id} = useParams();
-    const navigate = useNavigate(); 
-
+    const navigate = useNavigate();
+      const {user} = useAuth();
+  const [loadingFavoriteStock, setLoadingFavoriteStock] = useState(false);
+  const [favoriteStock, setFavoriteStock] = useState(false);
+  const {postStockFavorite, delStockFavorite} = useFavoriteStock();
+  
     if(!id) alert("Se ha producido un error");
+
     useEffect(()=>{
         async function handleGetStockId(){
             setLoading(true);
             try{
             const stock = await getStockId(id!);
+            if(stock) {
+                setStock(stock);
+                await checkIfFavorite(stock.idStock.toString());
+            }
             setLoading(false);
-            if(stock) setStock(stock);
             }catch(error){
                 console.error(error);
             }
         }
+
+        async function checkIfFavorite(stockId: string){
+            try{
+                setLoadingFavoriteStock(true);
+                if(!user) throw new Error();
+                let isFavorite = await isThisStockFavorite({idUser:user!.idUser, idStock: stockId});
+                setFavoriteStock(isFavorite.isFavoritesStock);
+                setLoadingFavoriteStock(false);
+            }catch(error){
+                console.error(error);
+                setLoadingFavoriteStock(false);
+            }
+        }
+
         handleGetStockId();
     }, []);
 
+    async function handleFavorite(){
+
+        try{
+            if(!user) throw new Error();
+
+        if(favoriteStock){
+            await delStockFavorite({idUser: user.idUser, idStock:stock.idStock.toString()});
+            setFavoriteStock(false);
+        }else{
+            await postStockFavorite({idUser: user.idUser, idStock:stock.idStock.toString()});
+            setFavoriteStock(true);
+        }
+    }catch(error){
+        throw error;
+    }
+
+    }
+        if (loading || loadingFavoriteStock) return <div className="loading-screen">Cargando...</div>
     return(
     <div className="container">
         <div className="stock-container">
@@ -77,7 +120,7 @@ export default function StockSeeMore(){
                 </div>
             </div>
 
-            <button className="action-button">❤️</button>
+            <button className="action-button" onClick={handleFavorite}>{favoriteStock ? "💔":"❤️"}</button>
         </div>
     </div>
     )

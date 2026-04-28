@@ -21,7 +21,7 @@ export default function Stocks(){
 
 
     useEffect(() => {
-      async function fetchAdvices() {
+      async function fetchStocks() {
         setLoading(true);
         try {
           const response = await getAllStocks(pageNum, pageSize);
@@ -38,7 +38,7 @@ export default function Stocks(){
         }
       };
   
-      fetchAdvices();
+      fetchStocks();
     }, [pageNum, pageSize]);
   
     if (loading) return <div className="loading-screen">Cargando...</div>;

@@ -4,11 +4,12 @@ import "./StockCard.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
+
 export default function StockCard({stock}:{stock:Stock}){
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token") || "";
-  const {user} = useAuth();
+      const {user} = useAuth();
 
   const riskClass = (riskScore:number) => {
   if (riskScore < -1 || riskScore > 3) return "risk-extreme";

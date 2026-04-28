@@ -18,6 +18,8 @@ import FormStocks from "./pages/FormStocks/FormStocks";
 import Stocks from "./pages/Stocks/Stocks";
 import StockCard from "./components/StockCard/StockCard";
 import StockSeeMore from "./pages/StockSeeMore/StockSeeMore";
+import { FavoritesStocksProvider } from "./contexts/FavoriteStocksContent";
+import StockFavorite from "./pages/StockFavorite/StockFavorite";
 
 
 function App() {
@@ -121,11 +123,22 @@ function App() {
 
         <Route path="/stock/:id" element={
           <RequireAuth>
+            <FavoritesStocksProvider>
             <StocksProvider>
               <StockSeeMore/>
             </StocksProvider>
+            </FavoritesStocksProvider>
         </RequireAuth>}/>
         
+{/** --------- Rutas de Acciones Favoritas ----------- */}
+
+        <Route path="/favorites-stocks" element={
+          <RequireAuth>
+            <FavoritesStocksProvider>
+              <StockFavorite/>
+            </FavoritesStocksProvider>
+        </RequireAuth>}/>
+
       </Route>
     </Routes>
     </AuthProvider>
