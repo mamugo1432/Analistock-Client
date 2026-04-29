@@ -10,7 +10,7 @@ export async function getAllAuthors(pageNum:number, pageSize:number):Promise<Get
         });
 
         if(!response.ok){
-            throw new Error("Se ha producido un error al obtener todos los authores");
+            throw new Error("Se ha producido un error al obtener todos los autores");
         }
         return await response.json();
     }catch(error){
@@ -44,7 +44,7 @@ export async function createAuthor(infoAuthor:upsertAuthorsBody): Promise<Author
         });
 
         if(response.status!==201){
-            throw new Error("Se ha producido un error al crear un nuevo author");
+            throw new Error("Se ha producido un error al crear un nuevo autor");
         }
 
         return await response.json();

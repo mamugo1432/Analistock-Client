@@ -1,57 +1,59 @@
-import {  Popover, Typography } from "@mui/material";
+import {  Box, List, ListItem, ListItemIcon, ListItemText, Popover, Tooltip, Typography } from "@mui/material";
 import { useState } from "react";
 import "../StockCard/StockCard.css";
 import "./MaterialUI.css"
 
 export default function ColorLegend() {
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
-
-  const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMouseLeave = () => {
-      setAnchorEl(null);
-  };
-
-  const open = anchorEl ? true : false;
-  const id = open ? 'simple-popover' : undefined;
+  
+    const items = [
+    { label: "Negro", desc: "Riesgo extremo", className: "risk-extreme" },
+    { label: "Rojo oscuro", desc: "Riesgo muy alto", className: "risk-too-high" },
+    { label: "Rojo", desc: "Riesgo alto", className: "risk-high" },
+    { label: "Amarillo", desc: "Riesgo normal", className: "risk-medium" },
+    { label: "Azul oscuro", desc: "Riesgo bajo", className: "risk-low" },
+    { label: "Azul", desc: "Riesgo muy bajo", className: "risk-too-low" },
+  ];
 
   return (
-    <div>
-      <div
-      className="legendColor"
-        aria-describedby={id}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+
+     <Tooltip
+      placement="bottom-start"
+      arrow
+      title={
+        <Box sx={{ p: 1 }}>
+          <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600 }}>
+            El indicador de riesgo se indica con colores:
+          </Typography>
+
+          <List dense disablePadding>
+            {items.map((item) => (
+              <ListItem key={item.label} disableGutters>
+                <ListItemIcon sx={{ minWidth: 28 }}>
+                  <Box
+                    sx={{
+                      width: 16,
+                      height: 16,
+                      borderRadius: "3px",
+                    }}
+                    className={item.className}
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  primary={`${item.label}: ${item.desc}`}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      }
+    >
+      <div className="legendColor">
         <span className="legend-text-full">Indicador de riesgo</span>
         <span className="legend-text-short">Riesgo</span>
       </div>
-      <Popover
-      sx={{ pointerEvents: "none" }}
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        onMouseLeave={handleMouseLeave}
-      >
-        <Typography sx={{ p: 2 }}>
-            <p>El indicador de riesgo se indica con colores de la siguiente forma:</p>
-            <ul>
-                <li><i className="text-white risk-extreme">Negro</i>: Riesgo extremo</li>
-                <li><i className="text-white risk-too-high">Rojo oscuro</i>: Riesgo muy alto</li>
-                <li><i className="text-white risk-high">Rojo</i>: Riesgo alto</li>
-                <li><i className=" text-white risk-medium">Amarillo</i>: Riesgo normal</li>
-                <li><i className="text-white risk-low">Azul Oscuro</i>: Riesgo bajo</li>
-                <li><i className="text-white risk-too-low">Azul</i>: Riesgo muy bajo</li>
-            </ul>
+    </Tooltip>
+  )
 
-        </Typography>
-      </Popover>
-    </div>
-  );
+     
+  ;
 }

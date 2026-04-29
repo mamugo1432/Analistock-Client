@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import type { Advice, upsertAdviceBody } from "../types/advicesType";
 import type { Author, upsertAuthorsBody } from "../types/authorsType";
 import type { FavoriteStock } from "../types/favoritesStocksTypes";
 import type { GetRequest } from "../types/generalTypes";
 import type { Stock } from "../types/stocksTypes";
 import { API_URL, fetchWithAuth } from './auth-service';
+
 
 export async function getAllStocksFavorites (idUser:string):Promise<Stock[]>{
 
@@ -19,9 +21,11 @@ export async function getAllStocksFavorites (idUser:string):Promise<Stock[]>{
     }catch(error){
         throw error;
     }
-}
 
-export async function isThisStockFavorite({idUser, idStock}:FavoriteStock):Promise<{isFavoritesStock:boolean}>{
+    }
+
+
+export async function isThisStockFavorite({idUser, idStock}:FavoriteStock):Promise<{isFavoriteStock:boolean}>{
 
     try{
 

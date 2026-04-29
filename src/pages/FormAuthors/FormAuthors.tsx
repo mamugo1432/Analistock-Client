@@ -40,7 +40,13 @@ export default function FormAuthors({mode}:{mode:string}){
             if(author) setAuthor(author);
             setLoading(false);
         }catch(error){
-            console.error(error);
+             if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            };
         }
 
     }
@@ -65,7 +71,13 @@ export default function FormAuthors({mode}:{mode:string}){
                 navigate("/authors");
             }
         }catch(error){
-            console.error(error);
+             if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
         }
     }
 

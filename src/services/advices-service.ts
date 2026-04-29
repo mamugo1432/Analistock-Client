@@ -108,7 +108,7 @@ export async function getAuthorsSelectApi(){
         method : "GET"
     });
         if (!response.ok) {
-        throw new Error("Se ha producido un error al obtener los autores del select");
+        throw new Error("Se ha producido un error al obtener los autores del selector");
     }
 
         return response.json();

@@ -9,12 +9,12 @@ export default function FormAdvices({mode}:{mode:string}){
     
 
     const {register,handleSubmit, setError, reset, formState : {errors, isSubmitting }} = useForm<upsertAdviceBody>({mode:"onTouched"});
-    const {postAdvice, delAdvice, putAdvice} = useAdvice();
     const [loadingAuthor, setLoadingAuthor] = useState<boolean>(mode!="create");
     const [loadingListAuthors, setLoadingListAuthors] = useState<boolean>(true);
     const [advice, setAdvice] = useState<Advice>({
         idAdvice:"", date:"", jobAuthor:"", nameAuthor:"", phrase:"", idAuthor:0
          });
+    const {postAdvice, delAdvice, putAdvice} = useAdvice();
     const [listAuthors, setListAuthors] = useState<Author[]>([]);
     const {id} = useParams();
     const navigate = useNavigate();
@@ -41,7 +41,13 @@ export default function FormAdvices({mode}:{mode:string}){
           if(authors) setListAuthors(authors);
           setLoadingListAuthors(false);
         }catch(error){
-          console.log(error);
+           if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
         }
        }
              
@@ -51,7 +57,13 @@ export default function FormAdvices({mode}:{mode:string}){
             if(advice) setAdvice(advice);
             setLoadingAuthor(false);
         }catch(error){
-            console.error(error);
+             if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
         }
 
     }
@@ -76,7 +88,13 @@ export default function FormAdvices({mode}:{mode:string}){
                 navigate("/advices");
             }
         }catch(error){
-            console.error(error);
+             if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
         }
     }
 

@@ -38,7 +38,13 @@ export default function FormStocks({mode}:{mode:string}){
                 if(stock) setStock(stock);
                 setLoading(false);
             }catch(error){
-                console.error(error);
+                 if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
             }
           }
 
@@ -74,7 +80,13 @@ export default function FormStocks({mode}:{mode:string}){
                             navigate("/stocks");
                         }
                     }catch(error){
-                        console.error(error);
+                         if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
                     }
                   }
 

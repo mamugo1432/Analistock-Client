@@ -32,7 +32,13 @@ export default function Stocks(){
           const lastPage = Math.ceil(totalElements / pageSize);
           setIsLastPage(pageNum >= lastPage);
         } catch (error) {
-          console.error(error);
+           if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
         } finally {
           setLoading(false);
         }

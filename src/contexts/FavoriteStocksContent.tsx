@@ -1,19 +1,31 @@
 import { createContext, type ReactNode, useContext } from 'react';
 import type { FavoritesStocksContentType, FavoriteStock } from '../types/favoritesStocksTypes';
 import { deleteStockFavorite, saveStockFavorite, isThisStockFavorite } from '../services/stocks-favorites-service';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const FavoritesStocksContext = createContext<FavoritesStocksContentType|undefined>(undefined);
 
 export const FavoritesStocksProvider = ({children} : {children: ReactNode}) => {
+    
+    const navigate = useNavigate();
+    
 
      async function postStockFavorite(infoFavoriteStock:FavoriteStock): Promise<FavoriteStock>{
          let favoriteStock:FavoriteStock = {idStock:"", idUser:0};
          try{
              favoriteStock = await saveStockFavorite(infoFavoriteStock);
          }catch(error){
-             console.error(error);
+
+            if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
+              
          }
          return favoriteStock;
      }
@@ -23,7 +35,15 @@ export const FavoritesStocksProvider = ({children} : {children: ReactNode}) => {
              try{
                  await deleteStockFavorite(infoFavoriteStock);
              }catch(error){
-                 console.error(error);
+                
+                 if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
+
              }
          }
 

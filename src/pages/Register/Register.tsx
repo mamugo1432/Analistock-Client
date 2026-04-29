@@ -3,7 +3,7 @@ import type { RegisterData, RegisterInputs } from "../../types/authTypes";
 import "./Register.css";
 import { checkEmail, obtainValidUsername, registerUser } from "../../services/auth-service";
 import { useAuth } from "../../contexts/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RegisterModal from "../../components/MaterialUI/RegisterModal";
 import { useNavigate } from "react-router-dom";
 
@@ -12,9 +12,13 @@ export default function Register() {
   const {register,handleSubmit, reset, watch, trigger, formState : {errors, isSubmitting }} = useForm<RegisterInputs>({mode:"onTouched"});
   const [openModal, setOpenModal] = useState<boolean>(false);
   const password = watch("password");
-  const {login, user} = useAuth();
+  const {login} = useAuth();
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
+
+useEffect(()=>{
+  setOpenModal(true);
+}, [])
 
   const onSubmit =  async (data : RegisterInputs) => {
     try{
@@ -23,11 +27,15 @@ export default function Register() {
     const registerData : RegisterData = {...data, username};
     await registerUser(registerData); 
     login({username, password : data.password});
-    setOpenModal(true);
-    reset();
-    navigate("/stocks");
+// comentado para la prueba    setOpenModal(true);
     }catch(error){
-      throw error;
+       if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
     }
   }
 

@@ -22,7 +22,6 @@ export default function Header() {
             {isAuthenticated && user?.role === "ADMIN" &&
               <>
                 <div className="nav-row">
-                  <button  className="header-pill">Test Inversor</button>
                   <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
                   <button  className="header-pill" onClick={() =>navigate("/stocks")}>Acciones</button>
                   <button  className="header-pill" onClick={() =>navigate("/authors")}>Autores</button>
@@ -30,7 +29,6 @@ export default function Header() {
                 <div className="nav-row">
                   <button  className="header-pill">Usuarios</button>
                   <button  className="header-pill"  onClick={() =>navigate("/favorites-stocks")}>Acciones Favoritas</button>
-                  <button  className="header-pill">Autores Favoritos</button>
                   <button  className="header-pill" onClick={() =>logout()}>Logout</button>
                 </div>
               </>
@@ -39,13 +37,11 @@ export default function Header() {
             {isAuthenticated && user?.role === "USER" &&
               <>
                 <div className="nav-row">
-                  <button  className="header-pill">Test Inversor</button>
                   <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
                   <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
                 </div>
                 <div className="nav-row">
                   <button  className="header-pill"  onClick={() =>navigate("/favorites-stocks")}>Acciones Favoritas</button>
-                  <button  className="header-pill">Autores Favoritos</button>
                   <button className="header-pill" onClick={() =>logout()}>Logout</button>
                 </div>
               </>
@@ -96,23 +92,19 @@ export default function Header() {
 
           {isAuthenticated && user?.role == "ADMIN" &&
             <>
-              <button  className="header-pill">Test Inversor</button>
               <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
               <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
               <button  className="header-pill" onClick={() =>navigate("/authors")}>Autores</button>
               <button  className="header-pill">Usuarios</button>
               <button  className="header-pill"  onClick={() =>navigate("/favorites-stocks")}>Acciones Favoritas</button>
-              <button  className="header-pill">Autores Favoritos</button>
               <button  className="header-pill" onClick={() =>logout()}>Logout</button>
             </>
           }
 
           {isAuthenticated && user?.role == "USER" &&
             <>
-              <button  className="header-pill">Test Inversor</button>
               <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
               <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
-              <button  className="header-pill">Autores Favoritos</button>
               <button  className="header-pill"  onClick={() =>navigate("/favorites-stocks")}>Acciones Favoritas</button>
               <button  className="header-pill" onClick={() =>logout()}>Logout</button>
             </>

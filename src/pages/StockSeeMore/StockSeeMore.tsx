@@ -36,7 +36,13 @@ export default function StockSeeMore(){
             }
             setLoading(false);
             }catch(error){
-                console.error(error);
+                 if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
             }
         }
 
@@ -45,11 +51,18 @@ export default function StockSeeMore(){
                 setLoadingFavoriteStock(true);
                 if(!user) throw new Error();
                 let isFavorite = await isThisStockFavorite({idUser:user!.idUser, idStock: stockId});
-                setFavoriteStock(isFavorite.isFavoritesStock);
+                setFavoriteStock(isFavorite.isFavoriteStock);
                 setLoadingFavoriteStock(false);
             }catch(error){
-                console.error(error);
                 setLoadingFavoriteStock(false);
+                 if(error instanceof Error){
+                navigate('/error', { 
+                state: { 
+                    message: error.message
+                } 
+            });
+            }
+                
             }
         }
 
@@ -69,7 +82,7 @@ export default function StockSeeMore(){
             setFavoriteStock(true);
         }
     }catch(error){
-        throw error;
+throw error;
     }
 
     }

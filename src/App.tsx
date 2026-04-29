@@ -20,6 +20,7 @@ import StockCard from "./components/StockCard/StockCard";
 import StockSeeMore from "./pages/StockSeeMore/StockSeeMore";
 import { FavoritesStocksProvider } from "./contexts/FavoriteStocksContent";
 import StockFavorite from "./pages/StockFavorite/StockFavorite";
+import Error from "./pages/Error/Error";
 
 
 function App() {
@@ -138,6 +139,18 @@ function App() {
               <StockFavorite/>
             </FavoritesStocksProvider>
         </RequireAuth>}/>
+
+{/** --------- Rutas de Errores ----------- */}
+          <Route path="/error" element={
+              <Error/>
+        }/>
+
+        <Route path="/*" element={
+              <Error/>
+        }/>
+
+
+
 
       </Route>
     </Routes>
