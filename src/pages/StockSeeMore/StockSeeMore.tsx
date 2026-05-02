@@ -154,7 +154,7 @@ throw error;
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que mide cuánto flujo de caja libre genera una empresa por cada acción en circulación."/>
-                        <strong>Free Cash Flow Per Share:</strong> <span className="info-value">{stock.freeCashFlow} %</span>
+                        <strong>Free Cash Flow Per Share:</strong> <span className="info-value">{stock.freeCashFlow.toFixed(4)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
