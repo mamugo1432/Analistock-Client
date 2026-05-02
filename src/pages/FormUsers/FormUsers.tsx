@@ -6,7 +6,7 @@ import { useUsers } from "../../contexts/UsersContext";
 import "../Register/Register.css";
 import "./FormUser.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { useForm, useWatch, Watch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { checkEmail, checkUsername } from "../../services/auth-service";
 
 export default function FormUsers({mode}:{mode:string}) {
@@ -68,7 +68,7 @@ export default function FormUsers({mode}:{mode:string}) {
     }
 
   }
-      
+           if (loading) return <div className="loading-screen">Cargando...</div>
   return (
     <>
       <div className="register-container d-flex justify-content-center align-items-center">

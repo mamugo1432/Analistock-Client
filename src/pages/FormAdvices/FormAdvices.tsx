@@ -8,7 +8,7 @@ import type { Author } from "../../types/authorsType";
 export default function FormAdvices({mode}:{mode:string}){
     
 
-    const {register,handleSubmit, setError, reset, formState : {errors, isSubmitting }} = useForm<upsertAdviceBody>({mode:"onTouched"});
+    const {register,handleSubmit, reset, formState : {errors, isSubmitting }} = useForm<upsertAdviceBody>({mode:"onTouched"});
     const [loadingAuthor, setLoadingAuthor] = useState<boolean>(mode!="create");
     const [loadingListAuthors, setLoadingListAuthors] = useState<boolean>(true);
     const [advice, setAdvice] = useState<Advice>({

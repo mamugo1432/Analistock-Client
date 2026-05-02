@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export function RequireAuthAdmin({children} : {children : ReactNode}){

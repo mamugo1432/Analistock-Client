@@ -1,8 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import type { Advice, upsertAdviceBody } from "../types/advicesType";
-import type { Author, upsertAuthorsBody } from "../types/authorsType";
+
 import type { FavoriteStock } from "../types/favoritesStocksTypes";
-import type { GetRequest } from "../types/generalTypes";
 import type { Stock } from "../types/stocksTypes";
 import { API_URL, fetchWithAuth } from './auth-service';
 

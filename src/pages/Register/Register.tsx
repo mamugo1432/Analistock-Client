@@ -3,13 +3,13 @@ import type { RegisterData, RegisterInputs } from "../../types/authTypes";
 import "./Register.css";
 import { checkEmail, obtainValidUsername, registerUser } from "../../services/auth-service";
 import { useAuth } from "../../contexts/AuthContext";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import RegisterModal from "../../components/MaterialUI/RegisterModal";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
 
-  const {register,handleSubmit, reset, watch, trigger, formState : {errors, isSubmitting }} = useForm<RegisterInputs>({mode:"onTouched"});
+  const {register,handleSubmit, watch, trigger, formState : {errors, isSubmitting }} = useForm<RegisterInputs>({mode:"onTouched"});
   const [openModal, setOpenModal] = useState<boolean>(false);
   const password = watch("password");
   const {login} = useAuth();

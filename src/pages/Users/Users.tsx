@@ -62,7 +62,7 @@ export default function Users(){
         
               <div className="mt-5 d-flex align-items-center justify-content-center">
                           <div className="pagination p-2 ">
-                            <Pagination  count={lastPage} page={pageNum} onChange={(event, value) => setPageNum(value)} variant="outlined" shape="rounded" color="primary"/>
+                            <Pagination  count={lastPage} page={pageNum} onChange={(_, value) => setPageNum(value)} variant="outlined" shape="rounded" color="primary"/>
                           </div>
                         </div>
               </div>

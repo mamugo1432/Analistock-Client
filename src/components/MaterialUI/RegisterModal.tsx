@@ -1,9 +1,7 @@
 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useEffect } from 'react';
 import type { RegisterModalProps } from '../../types/authTypes';
 import { useNavigate } from 'react-router-dom';
 const style = {

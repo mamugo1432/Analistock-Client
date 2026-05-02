@@ -1,7 +1,7 @@
-import { Form, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import "./Login.css";
 import type { LoginCredentials } from "../../types/authTypes";
-import { loginUser } from "../../services/auth-service";
+
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

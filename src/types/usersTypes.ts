@@ -1,4 +1,3 @@
-import type { UserLogged } from "./authTypes";
 
 export interface User{
     idUser:number,

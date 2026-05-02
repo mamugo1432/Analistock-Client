@@ -1,6 +1,6 @@
 import { createContext, type ReactNode, useContext } from 'react';
 import type { FavoritesStocksContentType, FavoriteStock } from '../types/favoritesStocksTypes';
-import { deleteStockFavorite, saveStockFavorite, isThisStockFavorite } from '../services/stocks-favorites-service';
+import { deleteStockFavorite, saveStockFavorite } from '../services/stocks-favorites-service';
 import { useNavigate } from 'react-router-dom';
 
 
