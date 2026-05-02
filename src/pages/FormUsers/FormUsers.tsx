@@ -10,157 +10,204 @@ import { useForm } from "react-hook-form";
 import { checkEmail, checkUsername } from "../../services/auth-service";
 import Swal from "sweetalert2";
 
-export default function FormUsers({mode}:{mode:string}) {
-
+export default function FormUsers({ mode }: { mode: string }) {
   const [userPage, setUserPage] = useState<User>({
-    age:0, email:"", fullName:"", sex:"", username:"", idUser:0
+    age: 0,
+    email: "",
+    fullName: "",
+    sex: "",
+    username: "",
+    idUser: 0,
   });
-  const {id} = useParams();
+  const { id } = useParams();
   const [loading, setLoading] = useState(false);
-  const {delUser, isSubmittingDelete, putUser} = useUsers();
+  const { delUser, isSubmittingDelete, putUser } = useUsers();
   const navigate = useNavigate();
-  const {user} = useAuth();
-  const {register,handleSubmit, watch, reset, formState : {errors, isSubmitting }} = useForm<User>({mode:"onTouched"});
-  const sexValue = watch("sex");
-  useEffect(()=>{
-    async function getUserById(){
+  const { user } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<User>({ mode: "onTouched" });
+  useEffect(() => {
+    async function getUserById() {
       setLoading(true);
-      try{
+      try {
         const userService = await getUsersByIdService(id!);
-        if(userService) setUserPage(userService);
-        console.log(userService);
-        reset(userService);
-        console.log(userService);
+        if (userService) setUserPage(userService);
+        reset(userPage);
         setLoading(false);
-      }catch(error){
-        if(error instanceof Error){
-          navigate('/error', { 
-            state: { 
-              message: error.message
-            } 
+      } catch (error) {
+        if (error instanceof Error) {
+          navigate("/error", {
+            state: {
+              message: error.message,
+            },
           });
         }
       }
     }
 
-      if( user?.role!="ADMIN" && user?.idUser.toString() != id!){
-        navigate("/error", {
-          state : {
-            message: "No tienes permisos para acceder a esta información"
-          }
-        })
-      }
+    if (user?.role != "ADMIN" && user?.idUser.toString() != id!) {
+      navigate("/error", {
+        state: {
+          message: "No tienes permisos para acceder a esta información",
+        },
+      });
+    }
 
     getUserById();
-  }, [id]); 
+  }, [id]);
 
-  async function submit(info:User){
+  useEffect(() => {
+    reset(userPage);
+  }, [userPage]);
 
-    try{
+  async function submit(info: User) {
+    try {
       putUser(id!, info);
       Swal.fire({
-                                                                                      title: 'Usuario editado con éxito',
-                                                                                      icon: 'success',
-                                                                                      theme: 'material-ui'
-                                                                                  });
-                                                                                  navigate("users/details/" + id);
-    }catch(error){
-        if(error instanceof Error){
-          navigate('/error', { 
-            state: { 
-              message: error.message
-            } 
-          });
-        }
+        title: "Usuario editado con éxito",
+        icon: "success",
+        theme: "material-ui",
+      });
+      navigate("users/details/" + id);
+    } catch (error) {
+      if (error instanceof Error) {
+        navigate("/error", {
+          state: {
+            message: error.message,
+          },
+        });
+      }
     }
-
   }
-           if (loading) return <div className="loading-screen">Cargando...</div>
+  if (loading) return <div className="loading-screen">Cargando...</div>;
   return (
     <>
       <div className="register-container d-flex justify-content-center align-items-center">
         <div className="register-card p-4">
           <h2 className="text-center mb-4 homenaje-regular">
-            {mode === "see" ? "Información del usuario" : mode === "delete" ? "Dar de baja usuario" : "Editar información usuario"}
+            {mode === "see"
+              ? "Información del usuario"
+              : mode === "delete"
+                ? "Dar de baja usuario"
+                : "Editar información usuario"}
           </h2>
 
           <form>
             <div className="mb-3">
-              <label className="form-label"><strong><i>Username</i></strong></label>
-              <input 
-                type="text" 
-                autoComplete="username" 
+              <label className="form-label">
+                <strong>
+                  <i>Username</i>
+                </strong>
+              </label>
+              <input
+                type="text"
+                autoComplete="username"
                 disabled={mode === "delete"}
                 readOnly={mode === "see"}
                 defaultValue={userPage.username}
-                className={errors.username ? "form-control is-invalid" : "form-control"}
+                className={
+                  errors.username ? "form-control is-invalid" : "form-control"
+                }
                 {...register("username", {
                   required: "El username es obligatorio",
                   minLength: {
-                    value: 3, message: "Mínimo 3 caracteres"
+                    value: 3,
+                    message: "Mínimo 3 caracteres",
                   },
-                  validate : async (value) => {
-                    try{
-                      if(user?.username == value) return true;
-                      if(user?.role == "ADMIN" && userPage.username == value) return true;
+                  validate: async (value) => {
+                    try {
+                      if (user?.username == value) return true;
+                      if (user?.role == "ADMIN" && userPage.username == value)
+                        return true;
                       const response = await checkUsername(value);
-                      return !response.existsUsername || "El username ya existe en la base de datos"
-                    }catch(e){
-                      if(e instanceof Error) alert(e.message);
+                      return (
+                        !response.existsUsername ||
+                        "El username ya existe en la base de datos"
+                      );
+                    } catch (e) {
+                      if (e instanceof Error) alert(e.message);
                       return true;
                     }
-                  }
+                  },
                 })}
               />
               {errors.username && (
-                <div className="invalid-feedback">{errors.username.message}</div>
+                <div className="invalid-feedback">
+                  {errors.username.message}
+                </div>
               )}
             </div>
 
             <div className="mb-3">
-              <label className="form-label"><strong><i>Nombre completo</i></strong></label>
-              <input 
-                type="text" 
-                autoComplete="name" 
+              <label className="form-label">
+                <strong>
+                  <i>Nombre completo</i>
+                </strong>
+              </label>
+              <input
+                type="text"
+                autoComplete="name"
                 disabled={mode === "delete"}
                 readOnly={mode === "see"}
                 defaultValue={userPage.fullName}
-                className={errors.fullName ? "form-control is-invalid" : "form-control"}
+                className={
+                  errors.fullName ? "form-control is-invalid" : "form-control"
+                }
                 {...register("fullName", {
                   required: "El fullName es obligatorio",
                   minLength: {
-                    value: 3, message: "Mínimo 3 caracteres"
-                  }
+                    value: 3,
+                    message: "Mínimo 3 caracteres",
+                  },
                 })}
               />
               {errors.fullName && (
-                <div className="invalid-feedback">{errors.fullName.message}</div>
+                <div className="invalid-feedback">
+                  {errors.fullName.message}
+                </div>
               )}
             </div>
 
             <div className="mb-3">
-              <label className="form-label"><strong><i>Email</i></strong></label>
-              <input 
-                type="email" 
+              <label className="form-label">
+                <strong>
+                  <i>Email</i>
+                </strong>
+              </label>
+              <input
+                type="email"
                 autoComplete="email"
                 disabled={mode === "delete"}
                 readOnly={mode === "see"}
                 defaultValue={userPage.email}
-                className={errors.email ? "form-control is-invalid" : "form-control"}
+                className={
+                  errors.email ? "form-control is-invalid" : "form-control"
+                }
                 {...register("email", {
                   required: "El email es obligatorio",
-                  pattern: {value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Email no válido"},
-                  validate : async (value) => {
-                    try{
-                      if(user?.email == value) return true;
-                      if(user?.role == "ADMIN" && userPage.email == value) return true;
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Email no válido",
+                  },
+                  validate: async (value) => {
+                    try {
+                      if (user?.email == value) return true;
+                      if (user?.role == "ADMIN" && userPage.email == value)
+                        return true;
                       const response = await checkEmail(value);
-                      return !response.existsEmail || "El correo ya existe en la base de datos"
-                    }catch(e){
-                      if(e instanceof Error) alert(e.message);
+                      return (
+                        !response.existsEmail ||
+                        "El correo ya existe en la base de datos"
+                      );
+                    } catch (e) {
+                      if (e instanceof Error) alert(e.message);
                       return true;
                     }
-                  }
+                  },
                 })}
               />
               {errors.email && (
@@ -169,19 +216,32 @@ export default function FormUsers({mode}:{mode:string}) {
             </div>
 
             <div className="mb-3 row align-items-center">
-              <label className="col-auto col-form-label"><strong><i>Age</i></strong></label>
+              <label className="col-auto col-form-label">
+                <strong>
+                  <i>Age</i>
+                </strong>
+              </label>
               <div className="col-3">
-                <input 
+                <input
                   type="number"
                   disabled={mode === "delete"}
                   readOnly={mode === "see"}
                   defaultValue={userPage.age}
-                  className={errors.age ? "form-control is-invalid" : "form-control"}
+                  className={
+                    errors.age ? "form-control is-invalid" : "form-control"
+                  }
                   {...register("age", {
                     required: "La edad es obligatoria",
                     valueAsNumber: true,
-                    min : {value:18, message:"La edad del usuario debe ser mayor de 18 años"},
-                    max : {value: 100, message: "La edad del usuario debe ser como máximo 100 años"}
+                    min: {
+                      value: 18,
+                      message: "La edad del usuario debe ser mayor de 18 años",
+                    },
+                    max: {
+                      value: 100,
+                      message:
+                        "La edad del usuario debe ser como máximo 100 años",
+                    },
                   })}
                 />
                 {errors.age && (
@@ -189,18 +249,25 @@ export default function FormUsers({mode}:{mode:string}) {
                 )}
               </div>
 
-              <label className="col-auto col-form-label ms-3"><strong><i>Sex</i></strong></label>
+              <label className="col-auto col-form-label ms-3">
+                <strong>
+                  <i>Sex</i>
+                </strong>
+              </label>
               <div className="col-auto d-flex gap-3 align-items-center">
                 <div className="form-check mb-0">
-                  <input   
-                    type="radio" 
-                    id="sexM" 
+                  <input
+                    type="radio"
+                    id="sexM"
                     defaultValue="M"
                     disabled={mode === "delete" || mode === "see"}
-                    checked={sexValue == "M"}
-                    className={errors.sex ? "form-check-input is-invalid" : "form-check-input"}
+                    className={
+                      errors.sex
+                        ? "form-check-input is-invalid"
+                        : "form-check-input"
+                    }
                     {...register("sex", {
-                      required: "El sexo es obligatorio"
+                      required: "El sexo es obligatorio",
                     })}
                   />
                   <label className="form-check-label" htmlFor="sexM">
@@ -208,15 +275,18 @@ export default function FormUsers({mode}:{mode:string}) {
                   </label>
                 </div>
                 <div className="form-check mb-0">
-                  <input 
-                    type="radio" 
-                    id="sexF" 
+                  <input
+                    type="radio"
+                    id="sexF"
                     defaultValue="F"
                     disabled={mode === "delete" || mode === "see"}
-                    checked={sexValue == "F"}
-                    className={errors.sex ? "form-check-input is-invalid" : "form-check-input"}
+                    className={
+                      errors.sex
+                        ? "form-check-input is-invalid"
+                        : "form-check-input"
+                    }
                     {...register("sex", {
-                      required: "El sexo es obligatorio"
+                      required: "El sexo es obligatorio",
                     })}
                   />
                   <label className="form-check-label" htmlFor="sexF">
@@ -230,10 +300,10 @@ export default function FormUsers({mode}:{mode:string}) {
             )}
             {mode === "delete" && (
               <div className="text-end">
-                <button 
+                <button
                   className="btn btn-danger"
-                  disabled={isSubmittingDelete} 
-                  type="button" 
+                  disabled={isSubmittingDelete}
+                  type="button"
                   onClick={() => delUser(id!)}
                 >
                   {isSubmittingDelete ? "Eliminando..." : "Eliminar"}
@@ -242,36 +312,40 @@ export default function FormUsers({mode}:{mode:string}) {
             )}
 
             <div className="text-end">
-            {mode === "see" && (
-              <>
-                <button 
-                  className="btn btn-warning"
-                  type="button" 
-                  onClick={() =>navigate("/users/edit/"+id!)}
-                >
-                 {user?.idUser == userPage.idUser ? "Editar mi información" : "Editar información del usuario"}
-                </button>
+              {mode === "see" && (
+                <>
+                  <button
+                    className="btn btn-warning"
+                    type="button"
+                    onClick={() => navigate("/users/edit/" + id!)}
+                  >
+                    {user?.idUser == userPage.idUser
+                      ? "Editar mi información"
+                      : "Editar información del usuario"}
+                  </button>
 
-                <button 
-                  className="btn btn-danger m-2"
-                  type="button" 
-                  onClick={() =>navigate("/users/delete/"+id!)}
-                >
-                  {user?.idUser == userPage.idUser ? "Darme de baja" : "Dar de baja al usuario"}
-                </button>
-              </>
-            )}
+                  <button
+                    className="btn btn-danger m-2"
+                    type="button"
+                    onClick={() => navigate("/users/delete/" + id!)}
+                  >
+                    {user?.idUser == userPage.idUser
+                      ? "Darme de baja"
+                      : "Dar de baja al usuario"}
+                  </button>
+                </>
+              )}
 
-            {mode === "edit" && (
-                <button 
+              {mode === "edit" && (
+                <button
                   className="btn btn-warning"
-                  disabled={isSubmitting} 
+                  disabled={isSubmitting}
                   type="button"
                   onClick={handleSubmit(submit)}
                 >
                   {isSubmitting ? "Guardando..." : "Editar"}
                 </button>
-            )}
+              )}
             </div>
           </form>
         </div>
