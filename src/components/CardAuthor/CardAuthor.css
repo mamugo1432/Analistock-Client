@@ -1,12 +1,13 @@
 .custom-card {
-  background: #EBFFEC; /* verde suave */
+  background: #ebffec;
   border-radius: 12px;
-  border: 1px solid #d8efd9; /* borde suave para dar estructura */
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid #d8efd9;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-/* Pequeño hover UX */
 .custom-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }

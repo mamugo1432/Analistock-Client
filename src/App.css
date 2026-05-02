@@ -6,7 +6,10 @@
   font-style: normal;
 }
 
-
+.pagination{
+    background-color:#EBFFEC;
+    border-radius: 20px;
+}
 
 
 .loading-screen {

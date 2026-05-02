@@ -11,7 +11,7 @@ export const AuthorsProvider = ({children} : { children: ReactNode})=>{
         try{
             author = await createAuthor(infoAuthor);
         }catch(error){
-            console.error(error);
+           throw error;
         }
         return author;
     }
@@ -20,9 +20,8 @@ export const AuthorsProvider = ({children} : { children: ReactNode})=>{
         let author:Author = {idAuthor:"", fullName:"", job:""};
         try{
             author = await updateAuthor(id,infoAuthor);
-            return author;
         }catch(error){
-            console.error(error);
+            throw error;
         }
         return author;
     }
@@ -32,7 +31,7 @@ export const AuthorsProvider = ({children} : { children: ReactNode})=>{
         try{
             await deleteAuthor(id);
         }catch(error){
-            console.error(error);
+            throw error;
         }
     }
 
@@ -43,11 +42,7 @@ export const AuthorsProvider = ({children} : { children: ReactNode})=>{
     }
 
         return (
-        <AuthorsContext.Provider value={{
-        postAuthor,
-        putAuthor,
-        delAuthor
-        }}>
+        <AuthorsContext.Provider value={retournedValues}>
             {children} </AuthorsContext.Provider>
     );
 }

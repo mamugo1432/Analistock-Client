@@ -1,13 +1,14 @@
 import {jwtDecode} from "jwt-decode";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import type { AuthContextType, JWTPayload, LoginCredentials, User } from "../types/authTypes";
+import type { AuthContextType, JWTPayload, LoginCredentials, UserLogged } from "../types/authTypes";
 import { loginUser, verifyToken } from "../services/auth-service";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<UserLogged | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const [isInitialized, setIsInitialized] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -74,11 +75,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
     };
     const logout = () => {
+                Swal.fire({
+                    title: 'Sesión cerrada con éxito',
+                    icon: 'success',
+                    theme: 'material-ui'
+                });
+        navigate("/login");
         setUser(null);
         setToken(null);
         setIsAuthenticated(false);
         localStorage.removeItem("token");
-        navigate("/login");
+
     };
     return (
         <AuthContext.Provider value={{
@@ -86,7 +93,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             isAuthenticated, 
             isInitialized,
             login, logout,
-            initializeAuth
+            initializeAuth,
+            setUser
         }}>
             {children} </AuthContext.Provider>
     );

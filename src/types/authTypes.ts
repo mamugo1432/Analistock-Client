@@ -3,7 +3,7 @@ export interface LoginCredentials {
     password: string
 }
 
-export interface User {
+export interface UserLogged {
     idUser:number,
     username : string,
     email : string,
@@ -12,13 +12,14 @@ export interface User {
 }
 
 export interface AuthContextType {
-    user: User | null;
+    user: UserLogged | null;
     token: string | null;
     isAuthenticated: boolean;
     isInitialized: boolean;
     login: (creds: LoginCredentials) => Promise<void>;
     logout: () => void;
-    initializeAuth: ()=> void
+    initializeAuth: ()=> void,
+    setUser: React.Dispatch<React.SetStateAction<UserLogged | null>>
 }
 
 export interface RegisterInputs {

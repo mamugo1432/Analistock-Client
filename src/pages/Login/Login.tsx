@@ -5,6 +5,7 @@ import { loginUser } from "../../services/auth-service";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import AlertSuccess from "../../components/AlertSuccess/AlertSuccess";
 export default function Login(){
 
   const {register,handleSubmit, reset, formState : {errors, isSubmitting }} = useForm<LoginCredentials>();
@@ -12,6 +13,7 @@ export default function Login(){
   const navigate = useNavigate();
   const url = new URLSearchParams(window.location.search);
   const notAuthenticatedError = url.toString().includes("error");
+  const closedSession = url.toString().includes("logout");
   const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const onSubmit = async (info : LoginCredentials) => {
@@ -29,7 +31,9 @@ export default function Login(){
 
     return (
         <>
-        <div className="login-container d-flex justify-content-center align-items-center">
+
+        <div className="login-container d-flex flex-column justify-content-center align-items-center">
+                                {closedSession && <AlertSuccess message={"Sesión cerrada con éxito"}/>}
   <div className="login-card p-4">
     <h2 id="login-title" className="text-center mb-4 homenaje-regular">LOGIN</h2>
 

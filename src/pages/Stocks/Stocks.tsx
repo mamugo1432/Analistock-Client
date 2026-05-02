@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { getAllStocks } from "../../services/stocks-service";
 import StockCard from "../../components/StockCard/StockCard";
-import Pagination from "../../components/Pagination/Pagination";
 import ColorLegend from '../../components/MaterialUI/ColorLegend';
 import InfoWarning from "../../components/InfoStock/InfoStock";
+import { Pagination } from "@mui/material";
 
 export default function Stocks(){
 
@@ -14,7 +14,7 @@ export default function Stocks(){
   const [pageNum, setPageNum] = useState(1);
   const [pageSize] = useState(6);
   let totalElements=0;
-  const [isLastPage, setIsLastPage] = useState(false);
+  const [lastPage, setLastPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {user} = useAuth();
@@ -30,7 +30,7 @@ export default function Stocks(){
   
           //Math.ceil redondea hacia arriba haya el decimal que haya
           const lastPage = Math.ceil(totalElements / pageSize);
-          setIsLastPage(pageNum >= lastPage);
+          setLastPage(lastPage);
         } catch (error) {
            if(error instanceof Error){
                 navigate('/error', { 
@@ -71,12 +71,10 @@ export default function Stocks(){
             ))}
           </div>
     
-          <div className="mt-5">
-            <Pagination 
-              currentPage={pageNum}
-              isLastPage={isLastPage}
-              onPageChange={setPageNum}
-            />
+          <div className="mt-2 d-flex align-items-center justify-content-center">
+            <div className="pagination p-2 ">
+              <Pagination  count={lastPage} page={pageNum} onChange={(event, value) => setPageNum(value)} variant="outlined" shape="rounded" color="primary"/>
+            </div>
           </div>
         </div>)
 }

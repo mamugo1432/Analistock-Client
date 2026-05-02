@@ -27,7 +27,7 @@ export default function Header() {
                   <button  className="header-pill" onClick={() =>navigate("/authors")}>Autores</button>
                 </div>
                 <div className="nav-row">
-                  <button  className="header-pill">Usuarios</button>
+                  <button  className="header-pill" onClick={() =>navigate("/users")}>Usuarios</button>
                   <button  className="header-pill"  onClick={() =>navigate("/favorites-stocks")}>Acciones Favoritas</button>
                   <button  className="header-pill" onClick={() =>logout()}>Logout</button>
                 </div>
@@ -37,10 +37,8 @@ export default function Header() {
             {isAuthenticated && user?.role === "USER" &&
               <>
                 <div className="nav-row">
-                  <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
                   <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
-                </div>
-                <div className="nav-row">
+                  <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
                   <button  className="header-pill"  onClick={() =>navigate("/favorites-stocks")}>Acciones Favoritas</button>
                   <button className="header-pill" onClick={() =>logout()}>Logout</button>
                 </div>
@@ -69,7 +67,7 @@ export default function Header() {
           </button>
 
           {isAuthenticated && (
-            <button className="header-user-btn" onClick={() => navigate('/profile')}>
+            <button className="header-user-btn" onClick={() => navigate('/users/details/' + user?.idUser)}>
               <span className="header-user-desktop">{user?.sex == "M" ? "🧑‍💻 " : "👩‍💻 "}  {user?.username}</span>
               <span className="header-user-mobile">{user?.sex == "M" ? "🧑‍💻" : "👩‍💻"}</span>
             </button>
@@ -95,7 +93,7 @@ export default function Header() {
               <button  className="header-pill" onClick={() =>navigate("/advices")}>Consejos</button>
               <button  className="header-pill" onClick={() => navigate("/stocks")}>Acciones</button>
               <button  className="header-pill" onClick={() =>navigate("/authors")}>Autores</button>
-              <button  className="header-pill">Usuarios</button>
+              <button  className="header-pill" onClick={() =>navigate("/users")}>Usuarios</button>
               <button  className="header-pill"  onClick={() =>navigate("/favorites-stocks")}>Acciones Favoritas</button>
               <button  className="header-pill" onClick={() =>logout()}>Logout</button>
             </>

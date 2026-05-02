@@ -16,10 +16,6 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-useEffect(()=>{
-  setOpenModal(true);
-}, [])
-
   const onSubmit =  async (data : RegisterInputs) => {
     try{
     const username = await obtainValidUsername(data.fullName);
@@ -27,7 +23,7 @@ useEffect(()=>{
     const registerData : RegisterData = {...data, username};
     await registerUser(registerData); 
     login({username, password : data.password});
-// comentado para la prueba    setOpenModal(true);
+   setOpenModal(true);
     }catch(error){
        if(error instanceof Error){
                 navigate('/error', { 

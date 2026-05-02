@@ -1,5 +1,4 @@
-import {  Box, List, ListItem, ListItemIcon, ListItemText, Popover, Tooltip, Typography } from "@mui/material";
-import { useState } from "react";
+import {  Box, List, ListItem, ListItemIcon, ListItemText, Tooltip, Typography } from "@mui/material";
 import "../StockCard/StockCard.css";
 import "./MaterialUI.css"
 

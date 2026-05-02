@@ -71,7 +71,7 @@ export const registerUser = async (data:RegisterData) : Promise<RegisterReturned
         throw error;
     }
 }
-const checkUsername = async (username:string) : Promise<{existsUsername : boolean}> => {
+export const checkUsername = async (username:string) : Promise<{existsUsername : boolean}> => {
     const response = await fetch(`${API_URL}/users/check-username?usernameParam=${username}`,{
         method : "GET"
     });

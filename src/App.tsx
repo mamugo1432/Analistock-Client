@@ -9,18 +9,19 @@ import FormAuthors from "./pages/FormAuthors/FormAuthors"
 import { AuthorsProvider } from "./contexts/AuthorsContext";
 import { RequireAuthAdmin } from "./guards/RequireAuthAdmin";
 import { RequireAuth } from './guards/RequireAuth';
-import AdviceCard from "./components/AdviceCard/AdviceCard";
 import { AdvicesProvider } from "./contexts/AdvicesContext";
 import Advices from './pages/Advices/Advices';
 import FormAdvices from "./pages/FormAdvices/FormAdvices"
 import { StocksProvider } from "./contexts/StocksContent";
 import FormStocks from "./pages/FormStocks/FormStocks";
 import Stocks from "./pages/Stocks/Stocks";
-import StockCard from "./components/StockCard/StockCard";
 import StockSeeMore from "./pages/StockSeeMore/StockSeeMore";
 import { FavoritesStocksProvider } from "./contexts/FavoriteStocksContent";
 import StockFavorite from "./pages/StockFavorite/StockFavorite";
 import Error from "./pages/Error/Error";
+import Users from "./pages/Users/Users";
+import { UsersProvider } from "./contexts/UsersContext";
+import FormUsers from "./pages/FormUsers/FormUsers";
 
 
 function App() {
@@ -140,6 +141,34 @@ function App() {
             </FavoritesStocksProvider>
         </RequireAuth>}/>
 
+{/** --------- Rutas de Usuarios ----------- */}
+
+          <Route path="/users" element={
+          <RequireAuthAdmin>
+              <Users/>
+        </RequireAuthAdmin>}/>
+          
+          <Route path="/users/details/:id" element={
+          <RequireAuth>
+            <UsersProvider>
+              <FormUsers mode="see"/>
+            </UsersProvider>
+        </RequireAuth>}/>
+
+          <Route path="/users/delete/:id" element={
+          <RequireAuth>
+            <UsersProvider>
+              <FormUsers mode="delete"/>
+            </UsersProvider>
+        </RequireAuth>}/>
+
+          <Route path="/users/edit/:id" element={
+          <RequireAuth>
+            <UsersProvider>
+              <FormUsers mode="edit"/>
+            </UsersProvider>
+        </RequireAuth>}/>
+        
 {/** --------- Rutas de Errores ----------- */}
           <Route path="/error" element={
               <Error/>
@@ -148,10 +177,6 @@ function App() {
         <Route path="/*" element={
               <Error/>
         }/>
-
-
-
-
       </Route>
     </Routes>
     </AuthProvider>

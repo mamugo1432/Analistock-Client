@@ -7,6 +7,8 @@ import { transformDate } from '../../services/advices-service';
 import { useAuth } from "../../contexts/AuthContext";
 import { useFavoriteStock } from "../../contexts/FavoriteStocksContent";
 import { isThisStockFavorite } from "../../services/stocks-favorites-service";
+import InfoIndicator from "../../components/MaterialUI/InfoIndicator";
+
 export default function StockSeeMore(){
 
         const [stock, setStock] = useState<GetStockById>({
@@ -90,46 +92,85 @@ throw error;
     return(
     <div className="container">
         <div className="stock-container">
-            <h2 className="stock-title">{stock.companyName}</h2>
-            <span><i><p>{stock.sector}</p></i></span>
-            <div className="stock-ticker">{stock.ticket}</div>
+            <div className="stock-header">
+                <div className="stock-info-top">
+                    <h2 className="stock-title">{stock.companyName}</h2>
+                    <span className="stock-sector">{stock.sector}</span>
+                </div>
+                <div className="stock-ticker">{stock.ticket}</div>
+            </div>
 
             <div className="info-row">
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Solvency Ratio: </strong></i>{stock.solvencyRatio}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que mide la capacidad de una empresa para cumplir sus deudas a largo plazo con sus activos disponibles."/>
+                        <strong>Solvency Ratio:</strong> <span className="info-value">{stock.solvencyRatio}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Price To Earnings(P/E) Ratio: </strong></i>{stock.peRatio}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que muestra cuánto están pagando los inversores por cada unidad de beneficio de una empresa."/>
+                        <strong>P/E Ratio:</strong> <span className="info-value">{stock.peRatio}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Current Ratio: </strong></i>{stock.currentRatio}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que mide la capacidad de una empresa para pagar sus deudas a corto plazo con sus activos corrientes."/>
+                        <strong>Current Ratio:</strong> <span className="info-value">{stock.currentRatio}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Price To Book(P/B) Ratio: </strong></i>{stock.pbRatio}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que compara el precio de mercado de una empresa con el valor contable de sus activos netos."/>
+                        <strong>P/B Ratio:</strong> <span className="info-value">{stock.pbRatio}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Dividend Yield: </strong></i>{stock.dividendYield}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que muestra qué porcentaje del precio de una acción se paga en dividendos cada año."/>
+                        <strong>Dividend Yield:</strong> <span className="info-value">{stock.dividendYield}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Net Profit Margin: </strong></i>{stock.netProfitMargin}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que muestra qué porcentaje de los ingresos de una empresa se convierte en beneficio neto después de todos los gastos."/>
+                        <strong>Net Profit Margin:</strong> <span className="info-value">{stock.netProfitMargin}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Dividend Payout Ratio: </strong></i>{stock.dividendPayoutRatio}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que muestra qué porcentaje de los beneficios de una empresa se reparte a los accionistas en forma de dividendos."/>
+                        <strong>Dividend Payout:</strong> <span className="info-value">{stock.dividendPayoutRatio}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Debt to Equity: </strong></i>{stock.debtEquity}</div>
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que mide cuánta deuda utiliza una empresa en relación con el capital aportado por sus accionistas."/>
+                        <strong>Debt to Equity:</strong> <span className="info-value">{stock.debtEquity}</span>
+                    </div>
+                </div>
+                
+                <div className="info-item">
+                    <div className="info-label">
+                        <InfoIndicator message="Indicador financiero que mide cuánto flujo de caja libre genera una empresa por cada acción en circulación."/>
+                        <strong>Free Cash Flow Per Share:</strong> <span className="info-value">{stock.freeCashFlow}</span>
+                    </div>
                 </div>
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Date: </strong></i>{transformDate(stock.date)}</div>
+                    <div className="info-label">
+                        <strong>Fecha de los datos:</strong> <span className="info-value">{transformDate(stock.date)}</span>
+                    </div>
                 </div>
+
                 <div className="info-item">
-                    <div className="info-label"><i><strong>Free Cash Flow Per Share: </strong></i>{stock.freeCashFlow}</div>
+                    <div className="info-label">
+                        <strong>Puntuación de riesgo:</strong> <span className="info-value">{stock.riskScore}</span>
+                    </div>
                 </div>
-                <div className="info-item">
-                    <div className="info-label"><i><strong>Financial Year: </strong></i>{stock.financialYear}</div>
-                </div>
-                <div className="info-item">
-                    <div className="info-label"><i><strong>Risk Score </strong></i>{stock.riskScore}</div>
+                                <div className="info-item">
+                    <div className="info-label">
+                        <strong>Año fiscal de los datos:</strong> <span className="info-value">{stock.financialYear}</span>
+                    </div>
                 </div>
             </div>
 
