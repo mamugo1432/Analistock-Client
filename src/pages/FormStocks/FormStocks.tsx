@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import type { GetStockById, Stock, upsertStockBody } from "../../types/stocksTypes";
+import type { GetStockById, upsertStockBody } from "../../types/stocksTypes";
 import "./FormStocks.css"
 import { useEffect, useState } from "react";
 import { useStock } from "../../contexts/StocksContent";
 import { useNavigate, useParams } from "react-router-dom";
 import { getStockByIdService, riskScore } from "../../services/stocks-service";
 export default function FormStocks({mode}:{mode:string}){
-    const {register,handleSubmit, setError, reset, formState : {errors, isSubmitting }} = useForm<upsertStockBody>({mode:"onTouched"});
+    const {register,handleSubmit, reset, formState : {errors, isSubmitting }} = useForm<upsertStockBody>({mode:"onTouched"});
     const [stock, setStock] = useState<GetStockById>({
         peRatio:0, pbRatio:0, netProfitMargin:0, debtEquity:0, freeCashFlow:0, solvencyRatio:0,
         currentRatio:0, dividendYield:0, dividendPayoutRatio:0, date:"", financialYear:0, sector:"",
