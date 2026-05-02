@@ -1,6 +1,7 @@
 import type  {LoginCredentials, RegisterData, RegisterReturnedData} from "../types/authTypes";
 
-export const API_URL = "http://localhost:8080";
+export const API_URL = "https://api-25-26-mamugo1432.onrender.com";
+//"http://localhost:8080";
 
 
 /**
