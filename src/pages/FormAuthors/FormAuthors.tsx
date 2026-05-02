@@ -5,6 +5,7 @@ import type { Author, upsertAuthorsBody } from "../../types/authorsType";
 import { getAuthorByIdService } from "../../services/authors-service";
 import "./FormAuthors.css";
 import { useAuthor } from "../../contexts/AuthorsContext";
+import Swal from "sweetalert2";
 
 export default function FormAuthors({mode}:{mode:string}){
 
@@ -56,17 +57,32 @@ export default function FormAuthors({mode}:{mode:string}){
             if(mode=="create"){
                 postAuthor(info);
                 reset();
+                                Swal.fire({
+                                                    title: 'Autor creado con éxito',
+                                                    icon: 'success',
+                                                    theme: 'material-ui'
+                                                });
                 navigate("/authors");
             }
 
             else if(mode == "edit"){
                 putAuthor(id!, info);
                 reset();
+                Swal.fire({
+                                                    title: 'Autor editado con éxito',
+                                                    icon: 'success',
+                                                    theme: 'material-ui'
+                                                });
                 navigate("/authors");
             }
 
             else{
                 delAuthor(id!);
+                Swal.fire({
+                                                    title: 'Autor eliminado con éxito',
+                                                    icon: 'success',
+                                                    theme: 'material-ui'
+                                                });
                 navigate("/authors");
             }
         }catch(error){

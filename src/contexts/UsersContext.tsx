@@ -3,6 +3,7 @@ import type {User, UsersContextType } from "../types/usersTypes";
 import { deleteUser, updateUser } from "../services/users-service";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import Swal from "sweetalert2";
 
 const UsersContext = createContext<UsersContextType|undefined>(undefined);
 
@@ -33,9 +34,19 @@ export const UsersProvider = ({children} : { children: ReactNode})=>{
             setIsSubmittingDelete(false);
 
                 if(user?.role=="ADMIN"){
+                    Swal.fire({
+                                                                                                          title: 'Usuario eliminado con éxito',
+                                                                                                          icon: 'success',
+                                                                                                          theme: 'material-ui'
+                                                                                                      });
                     navigate("/users");
                 }else{
-                    navigate("/login?logout");
+                    Swal.fire({
+                                                                                                          title: 'Sesión cerrada con éxito',
+                                                                                                          icon: 'success',
+                                                                                                          theme: 'material-ui'
+                                                                                                      });
+                    navigate("/login");
                 }
         }catch(error){
                      if(error instanceof Error){

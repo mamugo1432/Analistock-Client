@@ -8,6 +8,7 @@ import "./FormUser.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { useForm } from "react-hook-form";
 import { checkEmail, checkUsername } from "../../services/auth-service";
+import Swal from "sweetalert2";
 
 export default function FormUsers({mode}:{mode:string}) {
 
@@ -57,6 +58,12 @@ export default function FormUsers({mode}:{mode:string}) {
 
     try{
       putUser(id!, info);
+      Swal.fire({
+                                                                                      title: 'Usuario editado con éxito',
+                                                                                      icon: 'success',
+                                                                                      theme: 'material-ui'
+                                                                                  });
+                                                                                  navigate("users/details/" + id);
     }catch(error){
         if(error instanceof Error){
           navigate('/error', { 

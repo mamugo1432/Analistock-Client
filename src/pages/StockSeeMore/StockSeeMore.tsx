@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import type { GetStockById } from "../../types/stocksTypes";
-import { useStock } from "../../contexts/StocksContent";
+import { useStock } from "../../contexts/StocksContext";
 import { useNavigate, useParams } from "react-router-dom";
 import "./StockSeeMore.css"
 import { transformDate } from '../../services/advices-service';
 import { useAuth } from "../../contexts/AuthContext";
-import { useFavoriteStock } from "../../contexts/FavoriteStocksContent";
+import { useFavoriteStock } from "../../contexts/FavoriteStocksContext";
 import { isThisStockFavorite } from "../../services/stocks-favorites-service";
 import InfoIndicator from "../../components/MaterialUI/InfoIndicator";
 
@@ -23,7 +23,7 @@ export default function StockSeeMore(){
       const {user} = useAuth();
   const [loadingFavoriteStock, setLoadingFavoriteStock] = useState(false);
   const [favoriteStock, setFavoriteStock] = useState(false);
-  const {postStockFavorite, delStockFavorite} = useFavoriteStock();
+  const {postStockFavorite, delStockFavorite, loadingDeleteFavorite, loadingPostFavorite} = useFavoriteStock();
   
     if(!id) alert("Se ha producido un error");
 
@@ -174,7 +174,8 @@ throw error;
                 </div>
             </div>
 
-            <button className="action-button" onClick={handleFavorite}>{favoriteStock ? "💔":"❤️"}</button>
+            <button className="action-button" onClick={handleFavorite} 
+            disabled={loadingPostFavorite || loadingDeleteFavorite}>{favoriteStock ? "💔":"❤️"}</button>
         </div>
     </div>
     )

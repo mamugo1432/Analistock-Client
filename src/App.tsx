@@ -12,11 +12,11 @@ import { RequireAuth } from './guards/RequireAuth';
 import { AdvicesProvider } from "./contexts/AdvicesContext";
 import Advices from './pages/Advices/Advices';
 import FormAdvices from "./pages/FormAdvices/FormAdvices"
-import { StocksProvider } from "./contexts/StocksContent";
+import { StocksProvider } from "./contexts/StocksContext";
 import FormStocks from "./pages/FormStocks/FormStocks";
 import Stocks from "./pages/Stocks/Stocks";
 import StockSeeMore from "./pages/StockSeeMore/StockSeeMore";
-import { FavoritesStocksProvider } from "./contexts/FavoriteStocksContent";
+import { FavoritesStocksProvider } from "./contexts/FavoriteStocksContext";
 import StockFavorite from "./pages/StockFavorite/StockFavorite";
 import Error from "./pages/Error/Error";
 import Users from "./pages/Users/Users";

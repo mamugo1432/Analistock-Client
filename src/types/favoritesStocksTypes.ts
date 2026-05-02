@@ -5,5 +5,7 @@ export interface FavoriteStock{
 
 export interface FavoritesStocksContentType{
     postStockFavorite:(infoFavoriteStock:FavoriteStock) => Promise<FavoriteStock>,
-    delStockFavorite:(infoFavoriteStock:FavoriteStock) => void
+    delStockFavorite:(infoFavoriteStock:FavoriteStock) => void,
+    loadingPostFavorite:boolean,
+    loadingDeleteFavorite:boolean
 }
