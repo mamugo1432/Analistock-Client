@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
+const location = useLocation();
 
+useEffect(() => {
+  setOpen(false);   
+}, [location.pathname]);
   return (
     <header className="analistock-header">
       <div className="header-inner">
