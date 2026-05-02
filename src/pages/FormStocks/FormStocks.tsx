@@ -146,7 +146,7 @@ export default function FormStocks({ mode }: { mode: string }) {
             </h2>
 
             <form onSubmit={handleSubmit(submit)}>
-              {/* Company Information */}
+              
               <div className="section-header">Company Information</div>
 
               <div className="row justify-content-center">
@@ -232,7 +232,7 @@ export default function FormStocks({ mode }: { mode: string }) {
                 </div>
               </div>
 
-              {/* Financial Ratios */}
+             
               <div className="section-header">Financial Ratios</div>
 
               <div className="row justify-content-center">
@@ -353,7 +353,7 @@ export default function FormStocks({ mode }: { mode: string }) {
                 </div>
               </div>
 
-              {/* Cash Flow & Liquidity */}
+             
               <div className="section-header">Cash Flow & Liquidity</div>
 
               <div className="row justify-content-center">
@@ -449,7 +449,6 @@ export default function FormStocks({ mode }: { mode: string }) {
                 </div>
               </div>
 
-              {/* Dividend Information */}
               <div className="section-header">Dividend Information</div>
 
               <div className="row justify-content-center">
@@ -513,7 +512,7 @@ export default function FormStocks({ mode }: { mode: string }) {
                 </div>
               </div>
 
-              {/* Period Information */}
+              
               <div className="section-header">Period Information</div>
 
               <div className="row justify-content-center">
