@@ -72,7 +72,7 @@ export default function FormUsers({ mode }: { mode: string }) {
         icon: "success",
         theme: "material-ui",
       });
-      navigate("users/details/" + id);
+      navigate(-1);
     } catch (error) {
       if (error instanceof Error) {
         navigate("/error", {
