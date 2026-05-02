@@ -8,7 +8,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useFavoriteStock } from "../../contexts/FavoriteStocksContext";
 import { isThisStockFavorite } from "../../services/stocks-favorites-service";
 import InfoIndicator from "../../components/MaterialUI/InfoIndicator";
-import App from '../../App';
+
 
 export default function StockSeeMore(){
 
