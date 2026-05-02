@@ -9,6 +9,49 @@
 .pagination{
     background-color:#EBFFEC;
     border-radius: 20px;
+    padding: 12px 8px;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        padding: 4px 2px !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 2px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+    }
+
+    .pagination .MuiPagination-root {
+        gap: 2px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .pagination .MuiPagination-ul {
+        gap: 2px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    .pagination button,
+    .pagination .MuiButtonBase-root,
+    .pagination .MuiIconButton-root,
+    .pagination .MuiPaginationItem-root {
+        min-width: 24px !important;
+        width: 24px !important;
+        height: 24px !important;
+        padding: 0 !important;
+        font-size: 0.65rem !important;
+        line-height: 24px !important;
+    }
+
+    .pagination .MuiPaginationItem-root {
+        margin: 0 1px !important;
+    }
 }
 
 
