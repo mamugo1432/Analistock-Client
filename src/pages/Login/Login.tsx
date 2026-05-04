@@ -46,7 +46,7 @@ export default function Login(){
         )}
 
     <div className="mb-3">
-      <label><strong><i>Username or Email</i></strong></label>
+      <label><strong><i>Username o Email</i></strong></label>
       <input type="text"
       className={`form-control ${errors.username ? "is-invalid" : ""}`}
           {...register("username", {
@@ -60,7 +60,7 @@ export default function Login(){
     </div>
 
     <div className="mb-3">
-      <label><strong><i>Password</i></strong></label>
+      <label><strong><i>Contraseña</i></strong></label>
       <input  type="password" 
       className={`form-control ${errors.password ? "is-invalid" : ""}`}
           {...register("password", {

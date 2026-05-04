@@ -45,7 +45,7 @@ export default function Register() {
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
-            <label><strong><i>Full Name</i></strong></label>
+            <label><strong><i>Nombre completo</i></strong></label>
             <input  type="text" autoComplete="name" 
               className={`form-control ${errors.fullName ? "is-invalid" : ""}`}
           {...register("fullName", {
@@ -84,7 +84,7 @@ export default function Register() {
 
 
           <div className="mb-3 row align-items-center">
-            <label className="col-auto col-form-label"><strong><i>Age</i></strong></label>
+            <label className="col-auto col-form-label"><strong><i>Edad</i></strong></label>
             <div className="col-3">
               <input  type="number"
               className={`form-control ${errors.age ? "is-invalid" : ""}`}
@@ -101,7 +101,7 @@ export default function Register() {
           <p className="text-danger">{errors.age.message}</p> 
             )}
 
-            <label className="col-auto col-form-label ms-3"><strong><i>Sex</i></strong></label>
+            <label className="col-auto col-form-label ms-3"><strong><i>Sexo</i></strong></label>
             <div className="col-auto d-flex gap-3 align-items-center">
               <div className="form-check mb-0">
                 <input  type="radio" id="sexM" value="M"
@@ -132,7 +132,7 @@ export default function Register() {
             )}
 
           <div className="mb-3">
-            <label><strong><i>Password</i></strong></label>
+            <label><strong><i>Contraseña</i></strong></label>
             <input  type="password" 
             className={`form-control ${errors.password ? "is-invalid" : ""}`}
             {...register("password", {
@@ -149,7 +149,7 @@ export default function Register() {
           </div>
 
           <div className="mb-3">
-            <label><strong><i>Repeat Password</i></strong></label>
+            <label><strong><i>Contraseña Repetida</i></strong></label>
             <input type="password" 
              className={`form-control ${errors.repeatPassword ? "is-invalid" : ""}`}
               {...register("repeatPassword", {

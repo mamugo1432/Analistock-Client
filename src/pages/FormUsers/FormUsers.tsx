@@ -224,7 +224,7 @@ export default function FormUsers({ mode }: { mode: string }) {
             <div className="mb-3 row align-items-center">
               <label className="col-auto col-form-label">
                 <strong>
-                  <i>Age</i>
+                  <i>Edad</i>
                 </strong>
               </label>
               <div className="col-3">
@@ -257,7 +257,7 @@ export default function FormUsers({ mode }: { mode: string }) {
 
               <label className="col-auto col-form-label ms-3">
                 <strong>
-                  <i>Sex</i>
+                  <i>Sexo</i>
                 </strong>
               </label>
               <div className="col-auto d-flex gap-3 align-items-center">
