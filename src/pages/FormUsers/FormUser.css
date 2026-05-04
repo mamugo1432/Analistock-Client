@@ -1,3 +1,16 @@
 div .register-container{
     padding: 5px 10px;
 }
+
+@media (max-width: 576px) {
+
+    div .text-end{
+        display: flex;
+        flex-direction: column;
+    }
+
+    div .text-end button{
+        margin: 5px 0px !important;
+    }
+
+}

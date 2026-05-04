@@ -88,12 +88,16 @@ export default function FormUsers({ mode }: { mode: string }) {
     <>
       <div className="register-container d-flex justify-content-center align-items-center">
         <div className="register-card p-4">
-             <div className="d-flex align-items-center mb-4 position-relative">
+ <div className="d-flex align-items-center mb-4 position-relative">
   <button
     className="btn btn-sm backForm"
     onClick={() => navigate(-1)}
-  ></button>
-          <h2 className="text-center mb-4 homenaje-regular">
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+      <path fill="currentColor" d="m9.55 12l7.35 7.35q.375.375.363.875t-.388.875t-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675t-.15-.75t.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388t.375.875t-.375.875z"/>
+    </svg>
+  </button>
+          <h2 className="text-center homenaje-regular position-absolute start-50 translate-middle-x w-75">
             {mode === "see"
               ? "Información del usuario"
               : mode === "delete"
