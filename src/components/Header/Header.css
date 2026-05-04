@@ -10,7 +10,7 @@
   right: 28px;
   top: 50%;
   transform: translateY(-50%);
-    display: flex;
+  display: flex;
   align-items: center;
   gap: 6px;
 }
@@ -55,6 +55,14 @@
   font-weight: 600;
   letter-spacing: 3px;
   color: #1a1a1a;
+  margin: 0;
+  line-height: 1;
+}
+.header-title h1 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 .header-nav {
   display: flex;
@@ -74,9 +82,11 @@
   color: #1a1a1a;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.78rem;
-  font-weight: 500px;
+  font-weight: 500;
   padding: 4px 8px;
   border-radius: 999px;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
   white-space: nowrap;
@@ -93,7 +103,7 @@
 .header-user-desktop {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
-  display:inline;
+  display: inline;
 }
 .header-user-mobile {
   display: none;
@@ -105,12 +115,13 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+  line-height: 1;
 }
 
 .mobile-menu {
   overflow-y: auto;
-  scrollbar-width: none; /* Oculta en Firefox */
-/*  overflow: hidden;*/
+  scrollbar-width: none;
   max-height: 0;
   opacity: 0;
   transform: translateY(-10px);
@@ -118,7 +129,7 @@
 }
 
 .mobile-menu::-webkit-scrollbar {
-  width: 0; /* Oculta en Chrome, Safari y Opera */
+  width: 0;
 }
 .mobile-menu.open {
   max-height: 150px; 
@@ -133,7 +144,6 @@
 }
 
 @media (max-width: 730px) {
-
   .header-user-desktop {
     display: none;
   }
@@ -142,17 +152,15 @@
     display: inline;
   }
 }
+
 @media (max-width: 576px) {
-  .header-user-btn::before {
-    font-size: 1.2rem;
-  }
   .header-inner {
     justify-content: space-between;
     padding: 10px 14px;
   }
 
   .header-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   .header-nav {
@@ -161,5 +169,16 @@
 
   .header-menu-toggle {
     display: inline;
+  }
+  
+  .header-brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .header-user {
+    position: static;
+    transform: none;
   }
 }

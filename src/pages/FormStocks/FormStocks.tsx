@@ -137,6 +137,11 @@ export default function FormStocks({ mode }: { mode: string }) {
       <div className="d-flex justify-content-center align-items-center">
         <div className="col-12 col-md-10 col-lg-8 d-flex justify-content-center align-items-center m-2">
           <div className="form-card">
+               <div className="d-flex align-items-center mb-4 position-relative">
+  <button
+    className="btn btn-sm backForm"
+    onClick={() => navigate(-1)}
+  ></button>
             <h2 id="subtitle" className="mb-4 text-center homenaje-regular">
               {mode == "create"
                 ? "Crear acción"
@@ -144,17 +149,17 @@ export default function FormStocks({ mode }: { mode: string }) {
                   ? "Editar acción"
                   : "Eliminar acción"}
             </h2>
-
+</div>
             <form onSubmit={handleSubmit(submit)}>
               
-              <div className="section-header">Company Information</div>
+              <div className="section-header">Información de la empresa</div>
 
               <div className="row justify-content-center">
                 <div className="col-12 col-lg-10">
                   <div className="mb-3">
                     <label>
                       <i>
-                        <strong>Company Name</strong>
+                        <strong>Nombre de la empresa</strong>
                       </i>
                     </label>
                     <input
@@ -184,7 +189,7 @@ export default function FormStocks({ mode }: { mode: string }) {
                   <div className="mb-3">
                     <label>
                       <i>
-                        <strong>Ticket Symbol</strong>
+                        <strong>Ticket</strong>
                       </i>
                     </label>
                     <input
@@ -354,7 +359,7 @@ export default function FormStocks({ mode }: { mode: string }) {
               </div>
 
              
-              <div className="section-header">Cash Flow & Liquidity</div>
+              <div className="section-header">Flujo de caja y liquidez</div>
 
               <div className="row justify-content-center">
                 <div className="col-12 col-sm-6 col-lg-5">
@@ -449,7 +454,7 @@ export default function FormStocks({ mode }: { mode: string }) {
                 </div>
               </div>
 
-              <div className="section-header">Dividend Information</div>
+              <div className="section-header">Información sobre dividendos</div>
 
               <div className="row justify-content-center">
                 <div className="col-12 col-sm-6 col-lg-5">
@@ -513,14 +518,14 @@ export default function FormStocks({ mode }: { mode: string }) {
               </div>
 
               
-              <div className="section-header">Period Information</div>
+              <div className="section-header">Información sobre el periodo</div>
 
               <div className="row justify-content-center">
                 <div className="col-12 col-sm-6 col-lg-5">
                   <div className="mb-3">
                     <label>
                       <i>
-                        <strong>Date</strong>
+                        <strong>Fecha de los datos</strong>
                       </i>
                     </label>
                     <input
@@ -561,7 +566,7 @@ export default function FormStocks({ mode }: { mode: string }) {
                   <div className="mb-3">
                     <label>
                       <i>
-                        <strong>Financial Year</strong>
+                        <strong>Año fiscal</strong>
                       </i>
                     </label>
                     <input

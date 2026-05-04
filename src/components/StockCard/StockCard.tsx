@@ -38,11 +38,13 @@ export default function StockCard({stock}:{stock:Stock}){
 { user && user.role == "ADMIN" && <>
     <button
     className="btn btn-warning btn-sm m-1"
-    onClick={() => token == "" ? navigate("/login?error=Not Autenticated") : navigate("/stocks/edit/" + stock.idStock)}>✏️</button>
+    onClick={() => token == "" ? navigate("/login?error=Not Autenticated") : navigate("/stocks/edit/" + stock.idStock)}>
+✏️</button>
 
     <button
     className="btn btn-danger btn-sm m-1"
-    onClick={() => token == "" ? navigate("/login?error=Not Autenticated") : navigate("/stocks/delete/" + stock.idStock)}>🗑️</button>
+    onClick={() => token == "" ? navigate("/login?error=Not Autenticated") : navigate("/stocks/delete/" + stock.idStock)}>
+    🗑️ </button>
     </>
 }
 </div>

@@ -68,3 +68,15 @@
   font-weight: bold;
 
 }
+
+.backForm:hover{
+    border:0px
+}
+@media (max-width: 576px) {
+
+    .backForm svg{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+}

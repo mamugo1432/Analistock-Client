@@ -88,6 +88,11 @@ export default function FormUsers({ mode }: { mode: string }) {
     <>
       <div className="register-container d-flex justify-content-center align-items-center">
         <div className="register-card p-4">
+             <div className="d-flex align-items-center mb-4 position-relative">
+  <button
+    className="btn btn-sm backForm"
+    onClick={() => navigate(-1)}
+  ></button>
           <h2 className="text-center mb-4 homenaje-regular">
             {mode === "see"
               ? "Información del usuario"
@@ -95,6 +100,7 @@ export default function FormUsers({ mode }: { mode: string }) {
                 ? "Dar de baja usuario"
                 : "Editar información usuario"}
           </h2>
+          </div>
 
           <form>
             <div className="mb-3">

@@ -40,7 +40,7 @@ export default function Register() {
       <div className="register-container d-flex justify-content-center align-items-center">
         <div className="register-card p-4">
           <h2 id="login-title" className="text-center mb-4 homenaje-regular">
-            REGISTER
+            REGISTRO
           </h2>
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>

@@ -105,56 +105,56 @@ throw error;
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que mide la capacidad de una empresa para cumplir sus deudas a largo plazo con sus activos disponibles."/>
-                        <strong>Solvency Ratio:</strong> <span className="info-value">{stock.solvencyRatio} %</span>
+                        <strong>Solvency Ratio:</strong> <span className="info-value">{stock.solvencyRatio.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que muestra cuánto están pagando los inversores por cada unidad de beneficio de una empresa."/>
-                        <strong>P/E Ratio:</strong> <span className="info-value">{stock.peRatio} %</span>
+                        <strong>P/E Ratio:</strong> <span className="info-value">{stock.peRatio.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que mide la capacidad de una empresa para pagar sus deudas a corto plazo con sus activos corrientes."/>
-                        <strong>Current Ratio:</strong> <span className="info-value">{stock.currentRatio} %</span>
+                        <strong>Current Ratio:</strong> <span className="info-value">{stock.currentRatio.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que compara el precio de mercado de una empresa con el valor contable de sus activos netos."/>
-                        <strong>P/B Ratio:</strong> <span className="info-value">{stock.pbRatio} %</span>
+                        <strong>P/B Ratio:</strong> <span className="info-value">{stock.pbRatio.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que muestra qué porcentaje del precio de una acción se paga en dividendos cada año."/>
-                        <strong>Dividend Yield:</strong> <span className="info-value">{stock.dividendYield} %</span>
+                        <strong>Dividend Yield:</strong> <span className="info-value">{stock.dividendYield.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que muestra qué porcentaje de los ingresos de una empresa se convierte en beneficio neto después de todos los gastos."/>
-                        <strong>Net Profit Margin:</strong> <span className="info-value">{stock.netProfitMargin} %</span>
+                        <strong>Net Profit Margin:</strong> <span className="info-value">{stock.netProfitMargin.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que muestra qué porcentaje de los beneficios de una empresa se reparte a los accionistas en forma de dividendos."/>
-                        <strong>Dividend Payout:</strong> <span className="info-value">{stock.dividendPayoutRatio} %</span>
+                        <strong>Dividend Payout:</strong> <span className="info-value">{stock.dividendPayoutRatio.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que mide cuánta deuda utiliza una empresa en relación con el capital aportado por sus accionistas."/>
-                        <strong>Debt to Equity:</strong> <span className="info-value">{stock.debtEquity} %</span>
+                        <strong>Debt to Equity:</strong> <span className="info-value">{stock.debtEquity.toFixed(3)} %</span>
                     </div>
                 </div>
                 
                 <div className="info-item">
                     <div className="info-label">
                         <InfoIndicator message="Indicador financiero que mide cuánto flujo de caja libre genera una empresa por cada acción en circulación."/>
-                        <strong>Free Cash Flow Per Share:</strong> <span className="info-value">{stock.freeCashFlow.toFixed(4)} %</span>
+                        <strong>Free Cash Flow Per Share:</strong> <span className="info-value">{stock.freeCashFlow.toFixed(3)} %</span>
                     </div>
                 </div>
                 <div className="info-item">

@@ -16,14 +16,12 @@ export default function CardAuthor({ author }: CardAuthorProps) {
             className="btn btn-sm btn-warning"
             onClick={() => navigate("/authors/edit/" + author.idAuthor)}
           >
-            ✏️
-          </button>
+          ✏️</button>
           <button
             className="btn btn-sm btn-danger"
             onClick={() => navigate("/authors/delete/" + author.idAuthor)}
           >
-            🗑️
-          </button>
+          🗑️</button>
         </div>
       </div>
     </div>

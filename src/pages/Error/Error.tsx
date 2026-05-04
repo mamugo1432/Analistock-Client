@@ -15,10 +15,10 @@ export default function Error(){
                 <h2 id="error-title" className="homenaje-regular">Error</h2>
                 <p className="error-message">{errorMessage}</p>
                 <div className="error-buttons">
-                    <button className="btn-back" onClick={() => navigate(-1)}>
+                    <button className="btn btn-info" onClick={() => navigate(-1)}>
                         Volver Atrás
                     </button>
-                    <button className="btn-home" onClick={() => navigate("/stocks")}>
+                    <button className="btn btn-warning " onClick={() => navigate("/stocks")}>
                         Ir al Inicio
                     </button>
                 </div>

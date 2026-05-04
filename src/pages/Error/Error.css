@@ -42,49 +42,18 @@
   padding: 15px;
 }
 
+/* BOTONES */
 .error-buttons {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.btn-back {
-  background-color: #2ecc71;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 10px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-}
-
-.btn-back:hover {
-  background-color: #27ae60;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
-}
-
-.btn-home {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 10px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn-home:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+.error-buttons .btn {
+  padding: 10px 22px; 
+  font-size: 1rem;      
+  border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -106,10 +75,14 @@
 
   .error-buttons {
     flex-direction: column;
+    width: 100%;
+    gap: 8px;
   }
 
-  .btn-back,
-  .btn-home {
+  .error-buttons .btn {
     width: 100%;
+    padding: 10px 18px;  /* más pequeño aún */
+    font-size: 0.95rem;
+    border-radius: 8px;
   }
 }

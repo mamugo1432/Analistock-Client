@@ -29,19 +29,19 @@ export default function AdviceCard({ advice }: { advice: Advice }) {
 
             {isAuthenticated && user?.role == "ADMIN" && (
               <div className="botones-accion">
+
                 <button
                   id="btn-edit-cardAdvice"
                   className="btn btn-sm btn-warning"
                   onClick={() => navigate("/advices/edit/" + advice.idAdvice)}
                 >
-                  ✏️
-                </button>
+                ✏️</button>
                 <button
                   className="btn btn-sm btn-danger"
                   onClick={() => navigate("/advices/delete/" + advice.idAdvice)}
                 >
-                  🗑️
-                </button>
+               🗑️</button>
+
               </div>
             )}
           </div>
