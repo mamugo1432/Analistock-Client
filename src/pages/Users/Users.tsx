@@ -9,7 +9,7 @@ export default function Users(){
     
    const [users, setUsers] = useState<User[]>([]);
   const [pageNum, setPageNum] = useState(1);
-  const [pageSize] = useState(6);
+  const [pageSize] = useState(9);
   const [lastPage, setLastPage] = useState(0);
   let totalElements=0;
   const [loading, setLoading] = useState(false);
@@ -54,7 +54,7 @@ export default function Users(){
         </h2>
     
       </div>
-              <div className="row g-4">
+              <div className="row g-4 mt-3">
                 {users.map(user => (
                  <UserCard key={user.idUser} user={user}/>
                 ))}

@@ -64,14 +64,15 @@ export default function Stocks(){
     {user && user.role=="ADMIN" &&<div className="d-flex justify-content-center mb-4">
       <button className="btn btn-primary" onClick={() => navigate("/stocks/create")}>Añadir Acción</button>
     </div>}
+    <div className="mt-5">
     <InfoWarning/>
-          <div className="row g-4">
+          <div className="row g-4 mt-2">
             {stocks.map(stock => (
              <StockCard  key={stock.idStock} stock={stock}/>
             ))}
           </div>
-    
-          <div className="mt-2 d-flex align-items-center justify-content-center">
+    </div>
+          <div className="mt-5 d-flex align-items-center justify-content-center">
             <div className="pagination p-2 ">
               <Pagination  count={lastPage} page={pageNum} onChange={(_, value) => setPageNum(value)} variant="outlined" shape="rounded" color="primary"/>
             </div>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./Advices.css";
 import type { Advice } from "../../types/advicesType";
 import { useNavigate } from "react-router-dom";
 import { getAllAdvices } from "../../services/advices-service";
@@ -60,7 +59,7 @@ export default function Advices(){
         ))}
       </div>
 
-<div className="mt-2 d-flex align-items-center justify-content-center">
+<div className="mt-5 d-flex align-items-center justify-content-center">
             <div className="pagination p-2 ">
               <Pagination  count={lastPage} page={pageNum} onChange={(_, value) => setPageNum(value)} variant="outlined" shape="rounded" color="primary"/>
             </div>

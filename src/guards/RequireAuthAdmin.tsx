@@ -15,8 +15,8 @@ useEffect(() => {
 
     if(!isAuthenticated || user?.role!="ADMIN"){
                 Swal.fire({
-                    title: 'Sesión cerrada con éxito',
-                    icon: 'success',
+                    title: 'Sesión caducada',
+                    icon: 'error',
                     theme: 'material-ui'
                 });
         return <Navigate to="/login" replace />;
