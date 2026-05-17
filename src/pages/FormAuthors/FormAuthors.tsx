@@ -33,11 +33,11 @@ export default function FormAuthors({ mode }: { mode: string }) {
   if (mode != "create") {
     useEffect(() => {
       getAuthorId(id!);
-    });
+    }, [id]);
   } else {
     useEffect(() => {
       setLoading(false);
-    });
+    }, [id]);
   }
 
   async function getAuthorId(id: string) {

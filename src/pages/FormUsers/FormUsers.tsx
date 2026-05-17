@@ -30,6 +30,7 @@ export default function FormUsers({ mode }: { mode: string }) {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<User>({ mode: "onTouched" });
+  
   useEffect(() => {
     async function getUserById() {
       setLoading(true);

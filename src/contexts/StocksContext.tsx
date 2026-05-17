@@ -12,7 +12,7 @@ export const StocksProvider = ({children} : {children: ReactNode}) => {
          try{
              stock = await createStock(infoStock);
          }catch(error){
-             console.error(error);
+             throw error;
          }
          return stock;
      }
@@ -22,7 +22,7 @@ export const StocksProvider = ({children} : {children: ReactNode}) => {
          try{
              stock = await updateStock(id, infoStock);
          }catch(error){
-             console.error(error);
+             throw error;
          }
          return stock;
      }
@@ -31,7 +31,7 @@ export const StocksProvider = ({children} : {children: ReactNode}) => {
              try{
                  await deleteStock(id);
              }catch(error){
-                 console.error(error);
+                 throw error;
              }
          }
 

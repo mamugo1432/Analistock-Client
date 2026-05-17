@@ -36,6 +36,7 @@ export default function FormStocks({ mode }: { mode: string }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
+
   if (!id && mode != "create") {
     alert("Se ha producido un error");
     navigate("/stocks");
@@ -44,11 +45,11 @@ export default function FormStocks({ mode }: { mode: string }) {
   if (mode != "create") {
     useEffect(() => {
       geStockById(id!);
-    });
+    }, [id]);
   } else {
     useEffect(() => {
       setLoading(false);
-    });
+    }, [id]);
   }
 
   async function geStockById(id: string) {
@@ -82,7 +83,7 @@ export default function FormStocks({ mode }: { mode: string }) {
           info.netProfitMargin,
         );
 
-        postStock(info);
+        await postStock(info);
         reset();
         Swal.fire({
           title: "Acción creada con éxito",
@@ -103,7 +104,7 @@ export default function FormStocks({ mode }: { mode: string }) {
           info.netProfitMargin,
         );
 
-        putStock(id!, info);
+        await putStock(id!, info);
         reset();
         Swal.fire({
           title: "Acción editada con éxito",
@@ -112,7 +113,7 @@ export default function FormStocks({ mode }: { mode: string }) {
         });
         navigate("/stocks");
       } else {
-        delStock(id!);
+        await delStock(id!);
         Swal.fire({
           title: "Acción eliminada con éxito",
           icon: "success",

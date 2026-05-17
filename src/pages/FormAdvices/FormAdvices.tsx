@@ -44,7 +44,7 @@ export default function FormAdvices({ mode }: { mode: string }) {
     } else {
       setLoadingAuthor(false);
     }
-  });
+  }, [id]);
 
   async function getAuthorsSelect() {
     try {
